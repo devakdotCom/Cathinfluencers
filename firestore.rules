@@ -379,6 +379,36 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    match /voxGroupMembers/{membershipId} {
+      // Members join only as themselves, into a known pillar, with the
+      // deterministic id groupId_uid (prevents duplicate memberships).
+      allow create: if signedIn()
+        && request.resource.data.memberUid == request.auth.uid
+        && request.resource.data.groupId in ['adore', 'build', 'connect', 'disciple']
+        && membershipId == request.resource.data.groupId + '_' + request.auth.uid
+        && validString(request.resource.data.memberName, 1, 200)
+        && request.resource.data.status in ['active', 'left'];
+      // Members may only toggle their own status (join/leave); admins anything.
+      allow update: if isAdmin()
+        || (owns(resource.data.memberUid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+          && request.resource.data.status in ['active', 'left']);
+      // Membership lists are visible to signed-in members, not anonymously.
+      allow read: if signedIn();
+      allow delete: if isAdmin();
+    }
+
+    match /voxGroupActivities/{activityId} {
+      // Activities and announcements are public; only reviewers manage them.
+      allow read: if true;
+      allow create, update: if isReviewer()
+        && validString(request.resource.data.title, 1, 160)
+        && validString(request.resource.data.description, 1, 1000)
+        && request.resource.data.groupId in ['adore', 'build', 'connect', 'disciple']
+        && request.resource.data.status in ['active', 'archived'];
+      allow delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

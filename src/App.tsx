@@ -85,6 +85,8 @@ const CourseCatalog = lazy(() => import('./features/courses/CourseCatalog'));
 const CourseAdminManager = lazy(() => import('./features/courses/CourseAdminManager'));
 const AchievementWall = lazy(() => import('./features/excellence/AchievementWall'));
 const AchievementAdminManager = lazy(() => import('./features/excellence/AchievementAdminManager'));
+const VoxGroupHub = lazy(() => import('./features/voxgroup/VoxGroupHub'));
+const VoxGroupAdminManager = lazy(() => import('./features/voxgroup/VoxGroupAdminManager'));
 
 type PortalMode = 'welcome' | 'member-form' | 'member-tracker' | 'admin' | 'directory' | 'analytics' | 'import-export' | 'audit-logs';
 
@@ -131,7 +133,7 @@ function AppContent({
   const [isFirebaseQuotaExceeded, setIsFirebaseQuotaExceeded] = useState<boolean>(false);
   
   // Secondary sub-tab for Admin Dashboard - support 'profile' as a custom sub-tab!
-  const [adminTab, setAdminTab] = useState<'dashboard' | 'directory' | 'courses' | 'excellence' | 'analytics' | 'import-export' | 'audit-logs' | 'admins' | 'profile'>('dashboard');
+  const [adminTab, setAdminTab] = useState<'dashboard' | 'directory' | 'courses' | 'excellence' | 'voxgroup' | 'analytics' | 'import-export' | 'audit-logs' | 'admins' | 'profile'>('dashboard');
   
   // Admin Authorization & Profiles State
   const isAdminAuthenticated = authRole === 'admin';
@@ -1429,6 +1431,17 @@ function AppContent({
                 </button>
                 <button
                   type="button"
+                  onClick={() => setWelcomeTab('voxgroup')}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'voxgroup' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  role="tab"
+                  aria-selected={welcomeTab === 'voxgroup'}
+                  aria-controls="pub-tab-voxgroup"
+                  tabIndex={welcomeTab === 'voxgroup' ? 0 : -1}
+                >
+                  ⁘ Vox Group
+                </button>
+                <button
+                  type="button"
                   onClick={() => setWelcomeTab('announcements')}
                   className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'announcements' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
                   role="tab"
@@ -1805,6 +1818,18 @@ function AppContent({
               {welcomeTab === 'excellence' && (
                 <div id="pub-tab-excellence" role="tabpanel">
                   <AchievementWall
+                    memberUid={firebaseUser?.uid}
+                    memberName={authenticatedMember?.fullName ?? firebaseUser?.displayName ?? undefined}
+                    onRequireSignIn={() => setPortalMode('member-form')}
+                    onAddActivityLog={addActivityLog}
+                  />
+                </div>
+              )}
+
+              {/* TAB: VOX GROUP FOUR PILLARS */}
+              {welcomeTab === 'voxgroup' && (
+                <div id="pub-tab-voxgroup" role="tabpanel">
+                  <VoxGroupHub
                     memberUid={firebaseUser?.uid}
                     memberName={authenticatedMember?.fullName ?? firebaseUser?.displayName ?? undefined}
                     onRequireSignIn={() => setPortalMode('member-form')}
@@ -2200,6 +2225,14 @@ function AppContent({
                     </button>
 
                     <button
+                      onClick={() => { setAdminTab('voxgroup'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
+                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'voxgroup' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
+                    >
+                      <Users className={`w-4 h-4 ${adminTab === 'voxgroup' ? 'text-amber-400' : 'text-slate-400'}`} />
+                      <span>Vox Group</span>
+                    </button>
+
+                    <button
                       onClick={() => { setAdminTab('audit-logs'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
                       className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'audit-logs' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
                     >
@@ -2284,6 +2317,7 @@ function AppContent({
                     {adminTab === 'directory' && 'Cathfluencer Dossier Records'}
                     {adminTab === 'courses' && 'CISCAF Course Manager'}
                     {adminTab === 'excellence' && 'Vox Excellence Review'}
+                    {adminTab === 'voxgroup' && 'Vox Group Management'}
                     {adminTab === 'analytics' && 'Commission statistics'}
                     {adminTab === 'import-export' && 'Importer & Exporter'}
                     {adminTab === 'audit-logs' && 'Administrative Registry Audit'}
@@ -2941,6 +2975,13 @@ function AppContent({
 
               {adminTab === 'excellence' && authenticatedAdmin && (
                 <AchievementAdminManager
+                  adminUid={firebaseUser?.uid ?? ''}
+                  onAddActivityLog={addActivityLog}
+                />
+              )}
+
+              {adminTab === 'voxgroup' && authenticatedAdmin && (
+                <VoxGroupAdminManager
                   adminUid={firebaseUser?.uid ?? ''}
                   onAddActivityLog={addActivityLog}
                 />

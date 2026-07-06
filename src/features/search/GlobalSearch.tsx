@@ -24,6 +24,7 @@ export type PublicSection =
   | 'directory'
   | 'courses'
   | 'excellence'
+  | 'voxgroup'
   | 'announcements'
   | 'events'
   | 'resources'
