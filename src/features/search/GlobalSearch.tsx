@@ -25,6 +25,7 @@ export type PublicSection =
   | 'courses'
   | 'excellence'
   | 'voxgroup'
+  | 'trainers'
   | 'announcements'
   | 'events'
   | 'resources'

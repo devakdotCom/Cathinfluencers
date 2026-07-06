@@ -350,7 +350,11 @@ service cloud.firestore {
         || (owns(resource.data.memberUid)
           && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
           && request.resource.data.status == 'cancelled');
-      allow read: if isAdmin() || owns(resource.data.memberUid);
+      // Assigned trainers can see the roster of their own courses.
+      allow read: if isAdmin()
+        || owns(resource.data.memberUid)
+        || (signedIn()
+          && get(/databases/$(database)/documents/courses/$(resource.data.courseId)).data.trainerUid == request.auth.uid);
       allow delete: if isAdmin();
     }
 
@@ -406,6 +410,42 @@ service cloud.firestore {
         && validString(request.resource.data.description, 1, 1000)
         && request.resource.data.groupId in ['adore', 'build', 'connect', 'disciple']
         && request.resource.data.status in ['active', 'archived'];
+      allow delete: if isAdmin();
+    }
+
+    function validTrainerApplication(data) {
+      return data.applicantUid == request.auth.uid
+        && data.status == 'pending'
+        && validString(data.fullName, 1, 200)
+        && validString(data.email, 3, 200)
+        && validString(data.qualification, 1, 200)
+        && validString(data.bio, 1, 1200);
+    }
+
+    match /trainerApplications/{applicationId} {
+      // One application per account: the doc id is the applicant's uid.
+      allow create: if signedIn()
+        && applicationId == request.auth.uid
+        && validTrainerApplication(request.resource.data);
+      // Applicants may resubmit while pending or after rejection, always back
+      // to 'pending'. Reviewers move applications to approved/rejected.
+      // Applicants can never approve themselves.
+      allow update: if (owns(resource.data.applicantUid)
+          && resource.data.status in ['pending', 'rejected']
+          && validTrainerApplication(request.resource.data))
+        || (isReviewer()
+          && request.resource.data.status in ['pending', 'approved', 'rejected']
+          && request.resource.data.applicantUid == resource.data.applicantUid);
+      allow read: if isReviewer() || owns(resource.data.applicantUid);
+      allow delete: if isAdmin();
+    }
+
+    match /trainers/{trainerId} {
+      // Public trainer directory; only admins create or modify profiles.
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && validString(request.resource.data.fullName, 1, 200)
+        && request.resource.data.active is bool;
       allow delete: if isAdmin();
     }
 

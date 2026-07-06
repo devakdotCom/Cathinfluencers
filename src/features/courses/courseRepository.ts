@@ -68,6 +68,22 @@ export async function setCourseStatus(
   });
 }
 
+/** Assign an approved trainer to a course (admin action). */
+export async function assignTrainerToCourse(
+  courseId: string,
+  trainerUid: string,
+  trainerName: string,
+  actorUid: string,
+): Promise<void> {
+  if (!db) throw new Error('Firestore is not configured.');
+  await updateDoc(doc(db, 'courses', courseId), {
+    trainerUid,
+    trainerName,
+    updatedAt: new Date().toISOString(),
+    updatedBy: actorUid,
+  });
+}
+
 export async function deleteCourse(courseId: string): Promise<void> {
   if (!db) throw new Error('Firestore is not configured.');
   await deleteDoc(doc(db, 'courses', courseId));

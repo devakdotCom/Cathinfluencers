@@ -33,6 +33,7 @@ export interface Course {
   level: CourseLevel;
   language: string;
   trainerName: string;
+  trainerUid?: string;
   startDate?: string;
   endDate?: string;
   syllabus: string[];
