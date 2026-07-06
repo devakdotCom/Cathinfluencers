@@ -1,0 +1,56 @@
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Clip path to constrain central elements to the shield shape -->
+    <clipPath id="shield-clip">
+      <path d="M 170 140 Q 250 155 330 140 L 330 260 Q 330 310 250 350 Q 170 310 170 260 Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Deep Ecclesiastical Red Shield Base -->
+  <g>
+    <g clipPath="url(#shield-clip)">
+      <path d="M 170 140 Q 250 155 330 140 L 330 260 Q 330 310 250 350 Q 170 310 170 260 Z" fill="#B91C1C" />
+      
+      <!-- Golden Byzantine Cross Overlay -->
+      <rect x="232" y="100" width="36" height="300" fill="#E2BD6D" stroke="#000" strokeWidth="1" />
+      <rect x="150" y="212" width="200" height="36" fill="#E2BD6D" stroke="#000" strokeWidth="1" />
+    </g>
+    
+    <!-- Shield Border -->
+    <path 
+      d="M 170 140 Q 250 155 330 140 L 330 260 Q 330 310 250 350 Q 170 310 170 260 Z" 
+      fill="none" 
+      stroke="#000000" 
+      strokeWidth="10" 
+      strokeLinejoin="round" 
+    />
+  </g>
+
+  <!-- CENTRAL BLACK MEDALLION WITH SOCIAL MEDIA DOVE -->
+  <g transform="translate(0, 0)">
+    {/* Base dark outer badge */}
+    <circle cx="250" cy="230" r="51" fill="#0A0515" stroke="#000" strokeWidth="4" />
+    {/* Gold trim circle */}
+    <circle cx="250" cy="230" r="50" fill="none" stroke="#E2BD6D" strokeWidth="1.5" />
+    {/* Inner ring */}
+    <circle cx="250" cy="230" r="39" fill="none" stroke="#E2BD6D" strokeWidth="1.2" />
+
+    <!-- Transmission Waves above Dove head -->
+    <path d="M 241 213 A 11 11 0 0 1 259 213" fill="none" stroke="white" strokeWidth="2.0" strokeLinecap="round" />
+    <path d="M 237 207 A 16 16 0 0 1 263 207" fill="none" stroke="white" strokeWidth="2.0" strokeLinecap="round" />
+
+    <!-- Messenger Dove Flying Upward -->
+    <g fill="#FFFFFF" stroke="#000000" strokeWidth="1.0" strokeLinejoin="round">
+      <!-- Left Wing -->
+      <path d="M 247 228 C 236 224, 218 219, 222 238 C 231 237, 241 233, 247 228 Z" />
+      <!-- Right Wing -->
+      <path d="M 253 228 C 264 224, 282 219, 278 238 C 269 237, 259 233, 253 228 Z" />
+      <!-- Tail Feathers -->
+      <path d="M 246 235 L 241 247 Q 250 252 259 247 L 254 235 Z" />
+      <!-- Head -->
+      <circle cx="250" cy="225" r="4.2" />
+      <!-- Body -->
+      <path d="M 246 225 Q 250 233 250 237 Q 250 233 254 225 Z" />
+    </g>
+  </g>
+</svg>

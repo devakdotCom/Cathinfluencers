@@ -1,0 +1,6 @@
+{
+  "name": "Vox Ecclesiae Member Directory",
+  "description": "A comprehensive directory manager to add, edit, filter, search, import, and export member records with detailed analytics indicators.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

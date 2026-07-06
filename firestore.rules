@@ -1,0 +1,321 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return signedIn() && request.auth.token.admin == true;
+    }
+
+    function isReviewer() {
+      return isAdmin() || (signedIn() && request.auth.token.moderator == true);
+    }
+
+    function owns(uid) {
+      return signedIn() && request.auth.uid == uid;
+    }
+
+    function validString(value, min, max) {
+      return value is string && value.size() >= min && value.size() <= max;
+    }
+
+    function validPublicMember(data) {
+      return validString(data.id, 1, 128)
+        && validString(data.fullName, 1, 200)
+        && validString(data.status, 1, 50)
+        && validString(data.membershipClass, 1, 50)
+        && (!('diocese' in data) || validString(data.diocese, 0, 150))
+        && (!('parish' in data) || validString(data.parish, 0, 150))
+        && (!('avatarUrl' in data) || validString(data.avatarUrl, 0, 2048))
+        && !('email' in data)
+        && !('phone' in data)
+        && !('dob' in data)
+        && !('bloodGroup' in data)
+        && !('currentAddress' in data)
+        && !('permanentAddress' in data)
+        && !('address' in data)
+        && !('ownerUid' in data);
+    }
+
+    function validMember(data) {
+      return validString(data.ownerUid, 1, 128)
+        && validString(data.id, 1, 128)
+        && validString(data.fullName, 1, 200)
+        && validString(data.email, 3, 150)
+        && validString(data.status, 1, 50)
+        && validString(data.membershipClass, 1, 50);
+    }
+
+    function validAnnouncement(data) {
+      return validString(data.id, 1, 128)
+        && validString(data.title, 1, 200)
+        && validString(data.content, 1, 4000)
+        && validString(data.author, 1, 200)
+        && validString(data.createdAt, 10, 50)
+        && data.priority in ['low', 'medium', 'high'];
+    }
+
+    function validEvent(data) {
+      return validString(data.id, 1, 128)
+        && validString(data.title, 1, 200)
+        && validString(data.description, 0, 2000)
+        && validString(data.date, 10, 10)
+        && data.type in ['meeting', 'holyday', 'feast', 'other']
+        && data.category in ['Clergy', 'General', 'Media', 'Youth', 'Liturgical'];
+    }
+
+    function validApproval(data) {
+      return validString(data.id, 1, 128)
+        && data.kind in ['member_create', 'member_update', 'announcement', 'event', 'ai_content']
+        && data.status == 'pending'
+        && validString(data.title, 1, 250)
+        && validString(data.summary, 0, 1000)
+        && validString(data.ownerUid, 1, 128)
+        && validString(data.ownerName, 1, 200)
+        && data.payload is map
+        && validString(data.createdAt, 10, 50);
+    }
+
+    function validNotification(data) {
+      return validString(data.id, 1, 128)
+        && validString(data.recipientUid, 1, 128)
+        && data.type in ['approval', 'event', 'announcement', 'profile', 'system']
+        && validString(data.title, 1, 200)
+        && validString(data.message, 1, 1000)
+        && validString(data.createdAt, 10, 50);
+    }
+
+    match /publicMembers/{memberId} {
+      allow read: if true;
+      allow create: if isReviewer() && validPublicMember(request.resource.data);
+      allow update, delete: if isReviewer();
+    }
+
+    match /members/{memberId} {
+      allow read: if isReviewer() || owns(resource.data.ownerUid);
+      allow create: if isReviewer() && validMember(request.resource.data);
+      allow update: if isReviewer()
+        && validMember(request.resource.data)
+        && request.resource.data.ownerUid == resource.data.ownerUid;
+      allow delete: if isReviewer();
+    }
+
+    match /adminProfiles/{uid} {
+      allow read: if isAdmin() || owns(uid);
+      allow write: if isAdmin();
+    }
+
+    match /activityLogs/{logId} {
+      allow read: if isReviewer();
+      allow create: if isReviewer()
+        && validString(request.resource.data.id, 1, 128)
+        && validString(request.resource.data.timestamp, 10, 50)
+        && validString(request.resource.data.action, 1, 100)
+        && validString(request.resource.data.memberId, 1, 128)
+        && validString(request.resource.data.memberName, 1, 200)
+        && validString(request.resource.data.details, 1, 1000);
+      allow update, delete: if false;
+    }
+
+    match /announcements/{announcementId} {
+      allow read: if true;
+      allow create, update: if isReviewer() && validAnnouncement(request.resource.data);
+      allow delete: if isReviewer();
+    }
+
+    match /calendarEvents/{eventId} {
+      allow read: if true;
+      allow create, update: if isReviewer() && validEvent(request.resource.data);
+      allow delete: if isReviewer();
+    }
+
+    match /dailyReflections/{date} {
+      allow read: if true;
+      allow create, update: if isAdmin()
+        && request.resource.data.date == date
+        && request.resource.data.en is map
+        && request.resource.data.ta is map
+        && request.resource.data.source == 'admin'
+        && validString(request.resource.data.updatedAt, 10, 50)
+        && request.resource.data.updatedBy == request.auth.uid;
+      allow delete: if isAdmin();
+    }
+
+    match /leaders/{leaderId} {
+      allow read: if true;
+      allow write: if isAdmin()
+        && validString(request.resource.data.id, 1, 128)
+        && validString(request.resource.data.image, 1, 900000);
+    }
+
+    match /memberChangeRequests/{requestId} {
+      allow create: if signedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.memberId is string
+        && request.resource.data.proposedProfile is map
+        && request.resource.data.proposedProfile.ownerUid == request.auth.uid
+        && validMember(request.resource.data.proposedProfile);
+      allow read: if isAdmin() || owns(resource.data.ownerUid);
+      allow update: if isAdmin();
+      allow delete: if false;
+    }
+
+    match /approvalRequests/{requestId} {
+      allow create: if signedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && validApproval(request.resource.data);
+      allow read: if isReviewer() || owns(resource.data.ownerUid);
+      allow update: if isReviewer()
+        && resource.data.status == 'pending'
+        && request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['status', 'reviewedAt', 'reviewedBy', 'reviewNote'])
+        && request.resource.data.status in ['approved', 'rejected', 'changes_requested']
+        && request.resource.data.reviewedBy == request.auth.uid;
+      allow delete: if false;
+    }
+
+    match /notifications/{notificationId} {
+      allow create: if isReviewer() && validNotification(request.resource.data);
+      allow read: if isReviewer() || owns(resource.data.recipientUid);
+      allow update: if owns(resource.data.recipientUid)
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['readAt'])
+        && validString(request.resource.data.readAt, 10, 50);
+      allow delete: if isAdmin() || owns(resource.data.recipientUid);
+    }
+
+    match /savedMembers/{savedId} {
+      allow create: if signedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && validString(request.resource.data.id, 1, 300)
+        && validString(request.resource.data.memberId, 1, 128)
+        && validString(request.resource.data.createdAt, 10, 50);
+      allow read, delete: if owns(resource.data.ownerUid);
+      allow update: if false;
+    }
+
+    match /privateCredentials/{credentialId} {
+      allow create: if signedIn()
+        && credentialId.matches('^[a-fA-F0-9]{64}$')
+        && request.resource.data.id == credentialId
+        && validString(request.resource.data.ownerUid, 1, 128)
+        && validString(request.resource.data.memberId, 1, 128)
+        && validString(request.resource.data.displayName, 1, 200)
+        && request.resource.data.status in ['Active', 'Affiliated', 'Director']
+        && validString(request.resource.data.diocese, 0, 200)
+        && validString(request.resource.data.issuedAt, 10, 50)
+        && validString(request.resource.data.expiresAt, 10, 50)
+        && (
+          isAdmin()
+          || (
+            request.resource.data.ownerUid == request.auth.uid
+            && get(/databases/$(database)/documents/members/$(request.resource.data.memberId)).data.ownerUid == request.auth.uid
+          )
+        )
+        && request.resource.data.displayName
+          == get(/databases/$(database)/documents/members/$(request.resource.data.memberId)).data.fullName
+        && request.resource.data.status
+          == get(/databases/$(database)/documents/members/$(request.resource.data.memberId)).data.status
+        && request.resource.data.diocese
+          == get(/databases/$(database)/documents/members/$(request.resource.data.memberId)).data.diocese;
+      allow read: if isAdmin() || owns(resource.data.ownerUid);
+      allow update: if (isAdmin() || owns(resource.data.ownerUid))
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['revokedAt'])
+        && validString(request.resource.data.revokedAt, 10, 50);
+      allow delete: if false;
+    }
+
+    match /publicCredentials/{credentialId} {
+      allow get: if true;
+      allow list: if false;
+      allow create: if signedIn()
+        && credentialId.matches('^[a-fA-F0-9]{64}$')
+        && request.resource.data.id == credentialId
+        && validString(request.resource.data.displayName, 1, 200)
+        && validString(request.resource.data.status, 1, 50)
+        && validString(request.resource.data.diocese, 0, 200)
+        && validString(request.resource.data.issuedAt, 10, 50)
+        && validString(request.resource.data.expiresAt, 10, 50)
+        && !('memberId' in request.resource.data)
+        && !('ownerUid' in request.resource.data)
+        && (
+          isAdmin()
+          || getAfter(/databases/$(database)/documents/privateCredentials/$(credentialId)).data.ownerUid == request.auth.uid
+        )
+        && request.resource.data.displayName
+          == getAfter(/databases/$(database)/documents/privateCredentials/$(credentialId)).data.displayName
+        && request.resource.data.status
+          == getAfter(/databases/$(database)/documents/privateCredentials/$(credentialId)).data.status
+        && request.resource.data.diocese
+          == getAfter(/databases/$(database)/documents/privateCredentials/$(credentialId)).data.diocese;
+      allow update: if signedIn()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['revokedAt'])
+        && validString(request.resource.data.revokedAt, 10, 50)
+        && (
+          isAdmin()
+          || get(/databases/$(database)/documents/privateCredentials/$(credentialId)).data.ownerUid == request.auth.uid
+        );
+      allow delete: if false;
+    }
+
+    match /memberCredentialPointers/{memberId} {
+      allow create, update: if signedIn()
+        && request.resource.data.memberId == memberId
+        && validString(request.resource.data.ownerUid, 1, 128)
+        && validString(request.resource.data.credentialId, 64, 64)
+        && validString(request.resource.data.updatedAt, 10, 50)
+        && (
+          isAdmin()
+          || (
+            request.resource.data.ownerUid == request.auth.uid
+            && get(/databases/$(database)/documents/members/$(memberId)).data.ownerUid == request.auth.uid
+          )
+        );
+      allow read: if isAdmin() || owns(resource.data.ownerUid);
+      allow delete: if false;
+    }
+
+    match /credentialAuditLogs/{logId} {
+      allow create: if signedIn()
+        && request.resource.data.actorUid == request.auth.uid
+        && validString(request.resource.data.id, 1, 128)
+        && validString(request.resource.data.ownerUid, 1, 128)
+        && validString(request.resource.data.credentialId, 64, 64)
+        && request.resource.data.action in ['issued', 'revoked']
+        && validString(request.resource.data.createdAt, 10, 50)
+        && (isAdmin() || request.resource.data.ownerUid == request.auth.uid);
+      allow read: if isAdmin() || owns(resource.data.ownerUid);
+      allow update, delete: if false;
+    }
+
+    match /eventReminderSubscriptions/{subscriptionId} {
+      allow create: if signedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.eventId is string
+        && request.resource.data.status == 'active';
+      allow read, delete: if isAdmin() || owns(resource.data.ownerUid);
+      allow update: if false;
+    }
+
+    match /eventAvailabilities/{availabilityId} {
+      allow create, update: if signedIn()
+        && request.resource.data.ownerUid == request.auth.uid
+        && request.resource.data.memberId is string
+        && request.resource.data.eventId is string
+        && request.resource.data.status in ['available', 'not_available'];
+      allow read: if isAdmin() || owns(resource.data.ownerUid);
+      allow delete: if isAdmin() || owns(resource.data.ownerUid);
+    }
+
+    match /eventRsvps/{rsvpId} {
+      allow read: if isAdmin() || owns(resource.data.ownerUid);
+      allow write: if false;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

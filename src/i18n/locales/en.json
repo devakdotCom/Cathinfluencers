@@ -1,0 +1,74 @@
+{
+  "common": {
+    "language": "Language", "english": "EN", "tamil": "தமிழ்", "loading": "Loading...",
+    "retry": "Try again", "cancel": "Cancel", "save": "Save", "search": "Search",
+    "continue": "Continue", "approve": "Approve", "reject": "Reject",
+    "requestChanges": "Request changes", "reviewDetails": "Review details",
+    "developerView": "Developer view"
+  },
+  "nav": {
+    "home": "Home", "directory": "Directory", "events": "Events", "resources": "Resources",
+    "profile": "Profile", "admin": "Admin", "signIn": "Sign in",
+    "searchEverything": "Search everything", "notifications": "Notifications"
+  },
+  "dashboard": {
+    "personalizedWorkspace": "Personalized workspace",
+    "publicTitle": "Your Catholic media ministry starts here",
+    "adminTitle": "Ministry command overview",
+    "memberWelcome": "Welcome back, {{name}}",
+    "publicDescription": "Join a verified network of Catholic creators, clergy, parishes, and media collaborators.",
+    "adminDescription": "Review registry health, member activity, content, and upcoming ministry priorities from one place.",
+    "memberDescription": "Keep your public ministry profile current, discover collaborators, and stay ready for upcoming events.",
+    "register": "Register as a member", "verify": "Verify a Vox ID",
+    "commandCenter": "Open command center", "updateProfile": "Update my profile",
+    "network": "Network", "verifiedProfiles": "Verified profiles",
+    "discover": "Discover collaborators", "upcoming": "Upcoming",
+    "eventsInView": "Events in view", "openCalendar": "Open calendar",
+    "briefing": "Briefing", "ministryUpdates": "Ministry updates",
+    "readChronicles": "Read chronicles", "nextStep": "Next step",
+    "createIdentity": "Create your digital identity",
+    "identityDescription": "A verified profile helps dioceses and parishes coordinate trusted media work."
+  },
+  "form": {
+    "dateOfBirth": "Date of birth", "datePlaceholder": "dd-mm-yyyy",
+    "invalidDate": "Enter a valid date in dd-mm-yyyy format.",
+    "futureDate": "Date of birth cannot be in the future.",
+    "draftWithAI": "Draft biography with AI", "drafting": "Drafting biography...",
+    "biographyReady": "Biography drafts are ready for your review.",
+    "biographyFallback": "AI is unavailable, so reliable local drafts were created.",
+    "shortBio": "Short bio", "professionalBio": "Professional bio",
+    "ministryBio": "Ministry bio", "tamilBio": "Tamil bio",
+    "reviewBeforeSubmit": "Review and edit before submitting for approval."
+  },
+  "approval": {
+    "eyebrow": "Human review gate", "title": "Pending approvals",
+    "description": "Nothing is published until an authorized administrator approves it.",
+    "pending": "{{count}} pending", "clearTitle": "Review queue is clear",
+    "clearDescription": "New profiles, edits, events, announcements, and AI-assisted drafts will appear here.",
+    "submittedBy": "Submitted by {{name}}", "submittedDate": "Submitted",
+    "contact": "Contact information", "ministry": "Ministry and vocation",
+    "skills": "Skills", "experience": "Experience", "biography": "Biography",
+    "socialLinks": "Social links", "reviewNote": "Review note for the submitter",
+    "reviewPlaceholder": "Optional approval note or clear revision guidance"
+  },
+  "notifications": {
+    "title": "Notifications", "unread": "{{count}} unread",
+    "description": "Reviews, reminders, and ministry updates", "markAllRead": "Mark all read",
+    "emptyTitle": "You are all caught up",
+    "emptyDescription": "Approval decisions, profile changes, events, and reminders will appear here.",
+    "close": "Close notifications"
+  },
+  "credential": { "verified": "Credential verified", "invalid": "Credential not valid" },
+  "reflection": {
+    "eyebrow": "Daily Catholic reflection", "featured": "Featured reflection",
+    "todayGospel": "Today's Gospel", "reflection": "Reflection", "prayer": "Prayer",
+    "saintQuote": "Saint quote", "action": "Today's action",
+    "loading": "Preparing today's reflection...", "unavailable": "Today's reflection could not be loaded.",
+    "adminOverride": "Edit today's reflection", "saveOverride": "Publish override"
+  },
+  "aiHealth": {
+    "title": "AI health monitor", "provider": "Provider status", "requests": "Requests",
+    "successes": "Successful", "failures": "Fallbacks", "successRate": "Success rate",
+    "healthy": "Available", "degraded": "Fallback active"
+  }
+}

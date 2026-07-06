@@ -1,0 +1,278 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Lato", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Cinzel", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  min-width: 320px;
+  max-width: 100%;
+  scroll-behavior: smooth;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  max-width: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+button,
+a,
+input,
+select,
+textarea {
+  touch-action: manipulation;
+}
+
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  input,
+  select,
+  textarea {
+    font-size: inherit;
+  }
+}
+
+@media (max-width: 768px) {
+  button,
+  [role="button"],
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  #admin-main-view,
+  #public-tabs-content-viewport,
+  #detail-modal-body,
+  #member-payload-form {
+    overflow-wrap: anywhere;
+  }
+
+  #apostolate-fast-tabs,
+  #public-tabs-nav-bar {
+    scroll-snap-type: x proximity;
+    overscroll-behavior-inline: contain;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  #public-tabs-nav-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  #apostolate-fast-tabs > *,
+  #public-tabs-nav-bar > * {
+    scroll-snap-align: start;
+    min-height: 50px;
+    min-block-size: 50px;
+  }
+
+  #workspace-header {
+    padding-top: env(safe-area-inset-top);
+    height: calc(4rem + env(safe-area-inset-top));
+  }
+
+  #sidebar-panel {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+    max-width: min(85vw, 20rem);
+  }
+
+  #member-form-overlay,
+  #detail-modal-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  #member-form-container,
+  [id^="detail-modal-"] {
+    max-height: 100dvh;
+    min-height: 100dvh;
+    border-radius: 0;
+    border: 0;
+  }
+}
+
+#portal-landing-page {
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.public-tabs-shell {
+  isolation: isolate;
+}
+
+.public-tabs-scroll-control {
+  position: absolute;
+  top: 23px;
+  z-index: 10;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 13px;
+  color: #fcd34d;
+  background: rgba(7, 3, 17, 0.96);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) scale(0.9);
+  transition: opacity 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.public-tabs-scroll-control.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.public-tabs-scroll-control:focus-visible {
+  outline: 3px solid rgba(251, 191, 36, 0.65);
+  outline-offset: 2px;
+}
+
+.public-tabs-scroll-control svg {
+  width: 20px;
+  height: 20px;
+}
+
+.public-tabs-scroll-left {
+  left: 3px;
+}
+
+.public-tabs-scroll-right {
+  right: 3px;
+}
+
+.public-tabs-scroll-left::after,
+.public-tabs-scroll-right::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  z-index: -1;
+  width: 42px;
+  pointer-events: none;
+}
+
+.public-tabs-scroll-left::after {
+  left: 36px;
+  background: linear-gradient(90deg, rgba(7, 3, 17, 0.9), transparent);
+}
+
+.public-tabs-scroll-right::after {
+  right: 36px;
+  background: linear-gradient(270deg, rgba(7, 3, 17, 0.9), transparent);
+}
+
+.public-tabs-swipe-hint {
+  display: flex;
+  width: max-content;
+  gap: 5px;
+  margin: 7px auto 0;
+}
+
+.public-tabs-swipe-hint span {
+  width: 16px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.45);
+  transition: width 180ms ease, background-color 180ms ease;
+}
+
+.public-tabs-swipe-hint span.is-active {
+  width: 26px;
+  background: rgba(245, 158, 11, 0.85);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .public-tabs-scroll-control,
+  .public-tabs-swipe-hint span {
+    transition: none;
+  }
+}
+
+/* Beautiful page entry transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+/* Scrollbar customization matching gold/deep theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.4);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.7);
+}
+
+iframe {
+  border: none;
+}
+
+/* Better support for shadows and transitions on table rows */
+#canonical-cathfluencer-sheet tr {
+  will-change: transform, box-shadow;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.22s ease-in-out;
+}
+
+#canonical-cathfluencer-sheet tr:hover {
+  box-shadow: 0 10px 20px -5px rgba(2, 6, 23, 0.08), 0 4px 12px -4px rgba(2, 6, 23, 0.04);
+}
+
+/* Animated Music Equalizer simulation */
+@keyframes hymnEQ {
+  0% { height: 2px; }
+  100% { height: 24px; }
+}

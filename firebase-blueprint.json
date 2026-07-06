@@ -1,0 +1,35 @@
+{
+  "version": 2,
+  "architecture": {
+    "publicDirectory": "publicMembers/{memberId}",
+    "privateProfiles": "members/{memberId}",
+    "reviewQueue": "memberChangeRequests/{requestId}",
+    "auditTrail": "activityLogs/{logId}",
+    "content": [
+      "announcements/{announcementId}",
+      "calendarEvents/{eventId}",
+      "leaders/{leaderId}"
+    ],
+    "memberServices": [
+      "eventAvailabilities/{availabilityId}",
+      "eventReminderSubscriptions/{subscriptionId}",
+      "eventRsvps/{rsvpId}"
+    ]
+  },
+  "authorization": {
+    "member": "Firebase Authentication user owns a private profile through ownerUid",
+    "admin": "Firebase custom claim admin=true",
+    "serverOnlyWhenOptionalApiIsDeployed": [
+      "activity log writes",
+      "event RSVP writes",
+      "credential signing",
+      "role changes"
+    ]
+  },
+  "images": {
+    "provider": "Cloudinary free plan",
+    "memberPhotos": "Direct browser upload through a restricted unsigned upload preset",
+    "firestoreValue": "HTTPS delivery URL only",
+    "fallback": "Initials avatar or a pasted HTTPS image URL"
+  }
+}

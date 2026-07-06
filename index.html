@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#050712" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Vox Ecclesiae · Faith, Formation &amp; Community Platform</title>
+<meta name="description" content="Vox Ecclesiae. Learn faith, build community, become the voice of the Church. Verified Cathfluencer registry, CISCAF courses, live formation, Madha TV, Vox Group, and Vox Excellence." />
+<meta property="og:title" content="Vox Ecclesiae · The Voice of the Church, Reimagined for the Digital Generation" />
+<meta property="og:description" content="A complete Catholic media, learning, membership, and community platform for faith formation, service, and excellence." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.voxecclesiae.in/" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy-950:#050712;
+    --navy-900:#090c1a;
+    --navy-850:#0d1222;
+    --navy-800:#11182b;
+    --royal:#2f6fed;
+    --royal-2:#5b8cff;
+    --gold:#f5bd32;
+    --gold-2:#f7d66b;
+    --gold-deep:#c9972f;
+    --ivory:#f8f5ec;
+    --text:#f8fafc;
+    --muted:#9aa6bd;
+    --border:rgba(148,163,184,.18);
+    --glass:rgba(255,255,255,.04);
+    --glass-2:rgba(255,255,255,.07);
+    --display:"Cinzel",Georgia,serif;
+    --serif:"Cormorant Garamond",Georgia,serif;
+    --sans:"Lato",-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-padding-top:80px}
+  body{background:var(--navy-950);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;min-width:320px}
+  ::selection{background:var(--gold);color:var(--navy-950)}
+  a{color:inherit;text-decoration:none}
+  img,svg{display:block;max-width:100%}
+
+  #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--royal),var(--gold));z-index:1001;transition:width .1s linear}
+
+  header{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);height:68px;background:rgba(5,7,18,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:transform .35s ease}
+  header.hide{transform:translateY(-100%)}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .crest{width:36px;height:36px;flex:none}
+  .brand .name{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.15}
+  .brand .edition{display:block;font-family:var(--sans);font-size:9px;text-transform:uppercase;letter-spacing:.28em;color:var(--gold);font-weight:700}
+  nav.chapters{display:flex;gap:2px}
+  nav.chapters a{font-size:13px;font-weight:700;padding:8px 13px;border-radius:99px;letter-spacing:.02em;color:var(--muted);transition:background .25s,color .25s}
+  nav.chapters a:hover{background:var(--glass-2);color:var(--text)}
+  nav.chapters a.active{background:var(--gold);color:var(--navy-950)}
+  .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--navy-950);font-size:13px;font-weight:700;letter-spacing:.05em;padding:12px 24px;border-radius:99px;transition:background .25s,transform .25s,box-shadow .25s}
+  .cta-btn:hover{background:var(--gold-2);transform:translateY(-1px);box-shadow:0 14px 45px rgba(245,158,11,.18)}
+  .cta-btn.royal{background:var(--royal);color:#fff}
+  .cta-btn.royal:hover{background:var(--royal-2);box-shadow:0 14px 45px rgba(47,111,237,.25)}
+  .cta-btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
+  .cta-btn.ghost:hover{background:var(--glass-2);box-shadow:none}
+  @media(max-width:1080px){nav.chapters{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;position:relative;padding:130px 24px 90px;overflow:clip;background:
+    radial-gradient(ellipse 55% 42% at 50% -6%,rgba(47,111,237,.22),transparent 70%),
+    radial-gradient(ellipse 46% 34% at 50% 108%,rgba(245,189,50,.14),transparent 70%),
+    var(--navy-950)}
+  .hero::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 14% 22%,rgba(91,140,255,.09),transparent 30rem),radial-gradient(circle at 86% 72%,rgba(247,214,107,.06),transparent 26rem);pointer-events:none}
+  .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:.34em;font-weight:700;color:var(--gold);margin-bottom:24px}
+  .hero .crest-lg{width:clamp(66px,8vw,96px);margin:0 auto 28px;filter:drop-shadow(0 12px 30px rgba(245,189,50,.35))}
+  .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(34px,6.6vw,88px);line-height:1.06;letter-spacing:.02em;text-transform:uppercase;max-width:1100px}
+  .hero h1 em{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:600;font-size:1.14em;letter-spacing:0;background:linear-gradient(100deg,var(--gold-2),var(--gold) 60%,var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .sub{max-width:640px;margin:28px auto 0;font-size:clamp(15px,1.6vw,19px);color:var(--muted)}
+  .hero .ctas{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap;justify-content:center}
+  .hero .counts{display:flex;gap:clamp(22px,5vw,64px);margin-top:56px;flex-wrap:wrap;justify-content:center}
+  .count .num{font-family:var(--serif);font-size:clamp(34px,4.6vw,52px);font-weight:600;line-height:1;color:var(--ivory)}
+  .count .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--muted);margin-top:6px;font-weight:700}
+  .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);animation:bob 2.4s ease-in-out infinite;font-weight:700}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+
+  /* ---------- marquee ---------- */
+  .marquee{overflow:hidden;border-block:1px solid var(--border);padding:14px 0;white-space:nowrap;background:var(--navy-900)}
+  .marquee .track{display:inline-block;animation:scroll 30s linear infinite}
+  .marquee span{font-family:var(--serif);font-size:20px;font-style:italic;letter-spacing:.05em;margin:0 26px;color:var(--ivory)}
+  .marquee .dot{color:var(--gold);font-style:normal}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section.chapter{padding:clamp(80px,10vw,150px) clamp(20px,5vw,72px);position:relative}
+  .chapter-head{max-width:1200px;margin:0 auto clamp(40px,5vw,72px)}
+  .chapter-meta{display:flex;align-items:center;gap:18px;margin-bottom:22px}
+  .roman{font-family:var(--serif);font-size:15px;font-weight:600;letter-spacing:.18em;color:var(--gold);border:1px solid rgba(245,189,50,.4);border-radius:99px;padding:5px 16px}
+  .chapter-meta .rule{flex:1;height:1px;background:var(--border)}
+  .chapter h2{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.8vw,64px);line-height:1.08;letter-spacing:.01em;text-transform:uppercase}
+  .chapter h2 em{font-family:var(--serif);font-style:italic;text-transform:none;color:var(--gold);font-weight:600;font-size:1.12em}
+  .chapter .lede{max-width:660px;margin-top:18px;font-size:clamp(15px,1.5vw,18px);color:var(--muted)}
+
+  .glass{background:var(--glass);border:1px solid var(--border);border-radius:20px;backdrop-filter:blur(10px)}
+
+  /* mission */
+  .mission{max-width:1000px;margin:0 auto;text-align:center}
+  .mission p.big{font-family:var(--serif);font-size:clamp(22px,3vw,34px);line-height:1.45;color:var(--ivory)}
+  .mission p.big strong{color:var(--gold-2);font-weight:600}
+  .mission .verse{margin-top:26px;font-size:13px;text-transform:uppercase;letter-spacing:.24em;color:var(--muted);font-weight:700}
+
+  /* ecosystem */
+  .eco{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:1000px){.eco{grid-template-columns:repeat(3,1fr)}}
+  @media(max-width:700px){.eco{grid-template-columns:repeat(2,1fr)}}
+  .eco .tile{padding:26px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .3s,background .3s,border-color .3s}
+  .eco .tile:hover{transform:translateY(-4px);background:var(--glass-2);border-color:rgba(245,189,50,.35)}
+  .eco .ic{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,rgba(47,111,237,.25),rgba(245,189,50,.18));border:1px solid var(--border);color:var(--gold-2);font-size:17px}
+  .eco h4{font-family:var(--serif);font-size:21px;font-weight:600;color:var(--ivory)}
+  .eco p{font-size:13px;color:var(--muted)}
+  .eco .soon{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;color:var(--royal-2);margin-top:auto}
+
+  /* cards */
+  .grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  @media(max-width:1000px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.grid{grid-template-columns:1fr}}
+  .card{padding:26px 24px;display:flex;flex-direction:column;gap:13px;transition:transform .3s,background .3s,border-color .3s,box-shadow .3s}
+  .card:hover{transform:translateY(-5px);background:var(--glass-2);border-color:rgba(245,189,50,.32);box-shadow:0 20px 60px rgba(0,0,0,.28)}
+  .card .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+  .card .no{font-family:var(--serif);font-style:italic;font-size:19px;color:var(--gold)}
+  .tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.16em;padding:5px 11px;border-radius:99px;background:rgba(245,189,50,.14);color:var(--gold-2)}
+  .tag.free{background:rgba(52,211,153,.14);color:#6ee7b7}
+  .tag.paid{background:rgba(47,111,237,.18);color:var(--royal-2)}
+  .tag.royal{background:rgba(47,111,237,.18);color:var(--royal-2)}
+  .card h4{font-family:var(--serif);font-weight:600;font-size:23px;line-height:1.15;color:var(--ivory)}
+  .card p{font-size:14px;color:var(--muted);flex:1}
+  .card .meta{display:flex;gap:14px;font-size:12px;color:var(--muted);flex-wrap:wrap}
+  .card .meta b{color:var(--ivory);font-weight:700}
+  .card .more{font-size:13px;font-weight:700;color:var(--gold-2);display:inline-flex;gap:6px;align-items:center;transition:gap .25s}
+  .card:hover .more{gap:11px}
+
+  /* pillars */
+  .pillars{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:900px){.pillars{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.pillars{grid-template-columns:1fr}}
+  .pillar{padding:34px 26px;text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;transition:transform .3s,border-color .3s,background .3s}
+  .pillar:hover{transform:translateY(-5px);border-color:rgba(245,189,50,.35);background:var(--glass-2)}
+  .pillar .sym{font-family:var(--serif);font-size:30px;color:var(--gold);line-height:1}
+  .pillar h4{font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ivory)}
+  .pillar p{font-size:13.5px;color:var(--muted)}
+
+  /* media / featured panel */
+  .featured{max-width:1200px;margin:0 auto clamp(32px,4vw,52px);border-radius:24px;overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr;min-height:400px;background:linear-gradient(150deg,var(--navy-850),var(--navy-800));border:1px solid var(--border)}
+  .featured .txt{padding:clamp(30px,4.5vw,60px);display:flex;flex-direction:column;justify-content:center}
+  .pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.18em;border:1px solid var(--border);border-radius:99px;padding:6px 14px;width:max-content;color:var(--gold-2)}
+  .featured h3{font-family:var(--serif);font-weight:600;font-size:clamp(28px,3.4vw,46px);line-height:1.1;margin:20px 0 14px;color:var(--ivory)}
+  .featured p{color:var(--muted);max-width:480px}
+  .featured .actions{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+  .featured .art{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:
+    radial-gradient(circle at 70% 30%,rgba(47,111,237,.28),transparent 60%),
+    radial-gradient(circle at 30% 80%,rgba(245,189,50,.16),transparent 55%)}
+  @media(max-width:860px){.featured{grid-template-columns:1fr}.featured .art{min-height:240px}}
+
+  /* stats band */
+  .band{background:linear-gradient(160deg,var(--navy-900),var(--navy-850));border-block:1px solid var(--border);padding:clamp(56px,7vw,90px) clamp(20px,5vw,72px)}
+  .band-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px;text-align:center}
+  @media(max-width:820px){.band-inner{grid-template-columns:repeat(2,1fr)}}
+  .band .num{font-family:var(--serif);font-size:clamp(42px,5.2vw,68px);font-weight:600;line-height:1;color:var(--ivory)}
+  .band .num i{font-style:italic;color:var(--gold)}
+  .band .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--muted);margin-top:10px;font-weight:700}
+
+  /* finale */
+  .finale{text-align:center;padding:clamp(110px,14vw,190px) 24px;position:relative;overflow:clip;background:
+    radial-gradient(ellipse 55% 60% at 50% 112%,rgba(245,189,50,.2),transparent 70%),
+    radial-gradient(ellipse 45% 40% at 50% -10%,rgba(47,111,237,.16),transparent 70%),var(--navy-950)}
+  .finale h2{font-family:var(--display);font-weight:700;font-size:clamp(32px,6vw,84px);line-height:1.08;text-transform:uppercase;letter-spacing:.02em}
+  .finale h2 em{font-family:var(--serif);font-style:italic;text-transform:none;font-weight:600;font-size:1.14em;background:linear-gradient(100deg,var(--gold-2),var(--gold) 60%,var(--gold-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .finale p{max-width:540px;margin:24px auto 38px;color:var(--muted)}
+
+  footer{border-top:1px solid var(--border);padding:52px clamp(20px,5vw,72px) 40px;background:var(--navy-900)}
+  .foot-grid{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+  footer .fbrand{font-family:var(--display);font-size:17px;font-weight:700;color:var(--ivory);letter-spacing:.09em;text-transform:uppercase}
+  footer .ftag{font-family:var(--serif);font-style:italic;color:var(--muted);margin-top:8px;font-size:15px}
+  footer nav{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+  footer nav a:hover{color:var(--gold-2)}
+  .foot-base{max-width:1200px;margin:34px auto 0;padding-top:22px;border-top:1px solid var(--border);font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* Reveal animations are gated on html.js (added by landing.ts). Without JS, content is fully visible. */
+  html.js .reveal{opacity:0;transform:translateY(34px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+  html.js .reveal.in{opacity:1;transform:none}
+  .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}
+  @media(prefers-reduced-motion:reduce){html.js .reveal{opacity:1;transform:none;transition:none}.marquee .track{animation:none}.scroll-cue{animation:none}}
+</style>
+</head>
+<body>
+
+<div id="progress"></div>
+
+<header id="hdr">
+  <a class="brand" href="#top">
+    <svg class="crest" viewBox="0 0 100 100" aria-hidden="true">
+      <path d="M20 22 Q50 28 80 22 L80 55 Q80 74 50 88 Q20 74 20 55 Z" fill="#0d1222" stroke="#f5bd32" stroke-width="3"/>
+      <path d="M50 36 V72 M38 47 H62" stroke="#f7d66b" stroke-width="6" stroke-linecap="round"/>
+    </svg>
+    <span class="name">Vox Ecclesiae<span class="edition">Faith · Formation · Community</span></span>
+  </a>
+  <nav class="chapters" id="chapnav">
+    <a href="#ecosystem">Ecosystem</a>
+    <a href="#courses">Courses</a>
+    <a href="#voxgroup">Vox Group</a>
+    <a href="#madhatv">Madha TV</a>
+    <a href="#excellence">Excellence</a>
+    <a href="#membership">Membership</a>
+  </nav>
+  <a class="cta-btn" href="/register">Join now</a>
+</header>
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top">
+  <svg class="crest-lg reveal" viewBox="0 0 100 100" aria-hidden="true">
+    <path d="M20 22 Q50 28 80 22 L80 55 Q80 74 50 88 Q20 74 20 55 Z" fill="#0d1222" stroke="#f5bd32" stroke-width="2.5"/>
+    <path d="M50 34 V74 M36 46 H64" stroke="#f7d66b" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="50" cy="15" r="6" fill="none" stroke="#f5bd32" stroke-width="2"/>
+  </svg>
+  <p class="eyebrow reveal">Vox Ecclesiae · Catholic Digital Commission</p>
+  <h1 class="reveal d1">The Voice of the Church,<br/><em>reimagined</em> for the digital generation</h1>
+  <p class="sub reveal d2">A complete Catholic media, learning, membership, and community platform for faith formation, service, and excellence. Learn faith. Build community. Become the voice of the Church.</p>
+  <div class="ctas reveal d3">
+    <a class="cta-btn" href="/register">Join Vox Ecclesiae</a>
+    <a class="cta-btn royal" href="#courses">Explore courses</a>
+    <a class="cta-btn ghost" href="#madhatv">Watch Madha TV</a>
+    <a class="cta-btn ghost" href="#trainers">Become a trainer</a>
+  </div>
+  <div class="counts reveal d3">
+    <div class="count"><div class="num" data-count="500">0</div><div class="lbl">Verified members</div></div>
+    <div class="count"><div class="num" data-count="24">0</div><div class="lbl">CISCAF courses</div></div>
+    <div class="count"><div class="num" data-count="12">0</div><div class="lbl">Live sessions</div></div>
+    <div class="count"><div class="num" data-count="2">0</div><div class="lbl">Languages · EN &amp; தமிழ்</div></div>
+  </div>
+  <div class="scroll-cue">Scroll to explore</div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Learn Faith</span><span class="dot">✦</span>
+    <span>Build Community</span><span class="dot">✦</span>
+    <span>Become the Voice of the Church</span><span class="dot">✦</span>
+    <span>Vox Ecclesiae</span><span class="dot">✦</span>
+    <span>Learn Faith</span><span class="dot">✦</span>
+    <span>Build Community</span><span class="dot">✦</span>
+    <span>Become the Voice of the Church</span><span class="dot">✦</span>
+    <span>Vox Ecclesiae</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- ============ 2. MISSION ============ -->
+<section class="chapter" id="mission">
+  <div class="chapter-head" style="text-align:center;max-width:900px">
+    <div class="chapter-meta reveal" style="justify-content:center"><span class="roman">Our Mission</span></div>
+  </div>
+  <div class="mission reveal d1">
+    <p class="big">Every scroll, every post, every screen is mission territory. Vox Ecclesiae forms <strong>disciples first, influencers second</strong>, uniting creators, clergy, and parishes to catalog, empower, and elevate Catholic voices in the digital world.</p>
+    <p class="verse">Faith · Formation · Communication · Digital Evangelization</p>
+  </div>
+</section>
+
+<!-- ============ 3. ECOSYSTEM ============ -->
+<section class="chapter" id="ecosystem" style="background:var(--navy-900)">
+  <div class="chapter-head">
+    <div class="chapter-meta reveal"><span class="roman">Chapter I</span><span class="rule"></span></div>
+    <h2 class="reveal">One connected <em>ecosystem</em></h2>
+    <p class="lede reveal d1">Not separate tools. One platform where identity, learning, media, community, and administration flow together.</p>
+  </div>
+  <div class="eco">
+    <div class="glass tile reveal"><div class="ic">✚</div><h4>Membership</h4><p>Verified profiles for creators, clergy, and parish collaborators.</p></div>
+    <div class="glass tile reveal"><div class="ic">✦</div><h4>Vox ID</h4><p>A signed, verifiable digital credential for every member.</p></div>
+    <div class="glass tile reveal"><div class="ic">✎</div><h4>CISCAF Courses</h4><p>Faith and media formation, free and paid, with certificates.</p></div>
+    <div class="glass tile reveal"><div class="ic">✝</div><h4>Catechism</h4><p>Doctrine and Church teaching at the heart of every track.</p></div>
+    <div class="glass tile reveal"><div class="ic">◉</div><h4>AI Skills</h4><p>Responsible, mission-first use of AI for Catholic creators.</p><span class="soon">Rolling out</span></div>
+    <div class="glass tile reveal"><div class="ic">↗</div><h4>Trending Skills</h4><p>Short-form video, podcasting, design, and writing craft.</p></div>
+    <div class="glass tile reveal"><div class="ic">☩</div><h4>Trainer Management</h4><p>Apply, get approved, teach, and mentor the next generation.</p><span class="soon">Rolling out</span></div>
+    <div class="glass tile reveal"><div class="ic">▶</div><h4>Madha TV</h4><p>Shows, talks, and youth participation in Catholic media.</p></div>
+    <div class="glass tile reveal"><div class="ic">⁘</div><h4>Vox Group</h4><p>Adore, Build, Connect, and Be His Disciple communities.</p><span class="soon">Rolling out</span></div>
+    <div class="glass tile reveal"><div class="ic">♕</div><h4>Vox Excellence</h4><p>Achievements and recognition published to the world.</p><span class="soon">Rolling out</span></div>
+    <div class="glass tile reveal"><div class="ic">✵</div><h4>Achievements</h4><p>Milestones tracked from first course to commissioning.</p><span class="soon">Rolling out</span></div>
+    <div class="glass tile reveal"><div class="ic">⚙</div><h4>Administration</h4><p>Approvals, audit logs, analytics, and command center.</p></div>
+  </div>
+</section>
+
+<!-- ============ 4. COURSES ============ -->
+<section class="chapter" id="courses">
+  <div class="chapter-head">
+    <div class="chapter-meta reveal"><span class="roman">Chapter II</span><span class="rule"></span></div>
+    <h2 class="reveal">CISCAF <em>courses</em></h2>
+    <p class="lede reveal d1">Structured formation for Catholic social media influencers. Catechism, media craft, and leadership, taught by clergy and working communicators.</p>
+  </div>
+  <div class="grid">
+    <div class="glass card reveal"><div class="top"><span class="tag">Faith Formation</span><span class="tag free">Free</span></div><h4>Digital Discipleship 101</h4><p>The cornerstone course. What the Church teaches about media and how to build a presence that flows from a real interior life.</p><div class="meta"><span><b>6 weeks</b> · Beginner</span><span>EN · தமிழ்</span></div><a class="more" href="/register">Enroll →</a></div>
+    <div class="glass card reveal d1"><div class="top"><span class="tag">Catechism</span><span class="tag free">Free</span></div><h4>Catholic Apologetics for the Digital Era</h4><p>Defend and explain the faith online with clarity and charity, built for creators and writers.</p><div class="meta"><span><b>8 weeks</b> · Intermediate</span><span>EN · தமிழ்</span></div><a class="more" href="/register">Enroll →</a></div>
+    <div class="glass card reveal d2"><div class="top"><span class="tag">Media Ministry</span><span class="tag paid">Paid</span></div><h4>Short-Form Video Evangelization</h4><p>Reels and Shorts that catechize without losing depth. Scripting, filming, editing, publishing.</p><div class="meta"><span><b>4 weeks</b> · All levels</span><span>EN</span></div><a class="more" href="/register">Enroll →</a></div>
+    <div class="glass card reveal"><div class="top"><span class="tag">Communication</span><span class="tag paid">Paid</span></div><h4>Podcasting as Ministry</h4><p>Concept, gear, recording, and the pastoral art of long-form Catholic conversation.</p><div class="meta"><span><b>6 weeks</b> · Intermediate</span><span>EN</span></div><a class="more" href="/register">Enroll →</a></div>
+    <div class="glass card reveal d1"><div class="top"><span class="tag">Youth Leadership</span><span class="tag free">Free</span></div><h4>Mission-First Growth Strategy</h4><p>Define your charism and audience, and build a content plan where every metric maps back to ministry.</p><div class="meta"><span><b>5 weeks</b> · Intermediate</span><span>EN · தமிழ்</span></div><a class="more" href="/register">Enroll →</a></div>
+    <div class="glass card reveal d2"><div class="top"><span class="tag">Media Ministry</span><span class="tag paid">Paid</span></div><h4>Sacred Design &amp; Visual Identity</h4><p>Typography, color, and iconography for feeds that feel reverent, consistent, and unmistakably yours.</p><div class="meta"><span><b>4 weeks</b> · All levels</span><span>EN</span></div><a class="more" href="/register">Enroll →</a></div>
+  </div>
+  <div style="text-align:center;margin-top:38px" class="reveal"><a class="cta-btn royal" href="/register">Browse all courses at enrollment</a></div>
+</section>
+
+<!-- ============ 5. VOX GROUP ============ -->
+<section class="chapter" id="voxgroup" style="background:var(--navy-900)">
+  <div class="chapter-head">
+    <div class="chapter-meta reveal"><span class="roman">Chapter III</span><span class="rule"></span></div>
+    <h2 class="reveal">Vox <em>Group</em></h2>
+    <p class="lede reveal d1">Four pillars of belonging. Every member finds a home, a mission, and a community to grow with.</p>
+  </div>
+  <div class="pillars">
+    <div class="glass pillar reveal"><div class="sym">✙</div><h4>Adore</h4><p>Worship God and grow in love for Him.</p></div>
+    <div class="glass pillar reveal d1"><div class="sym">⌂</div><h4>Build</h4><p>Build faith and strong communities.</p></div>
+    <div class="glass pillar reveal d2"><div class="sym">∞</div><h4>Connect</h4><p>Connect with people and serve together.</p></div>
+    <div class="glass pillar reveal d3"><div class="sym">☩</div><h4>Be His Disciple</h4><p>Live as disciples and make disciples.</p></div>
+  </div>
+</section>
+
+<!-- ============ 6. MADHA TV ============ -->
+<section class="chapter" id="madhatv">
+  <div class="chapter-head">
+    <div class="chapter-meta reveal"><span class="roman">Chapter IV</span><span class="rule"></span></div>
+    <h2 class="reveal">Madha <em>TV</em></h2>
+    <p class="lede reveal d1">Catholic media in motion. Shows, talks, live worship, and real participation opportunities for young creators.</p>
+  </div>
+  <div class="featured reveal">
+    <div class="txt">
+      <span class="pill">Live &amp; on demand</span>
+      <h3>Watch, participate, and appear</h3>
+      <p>Stream featured programs and live worship inside the member portal, register to participate in shows and youth programs, and submit your own tribute shorts for feast-day features.</p>
+      <div class="actions">
+        <a class="cta-btn" href="/app">Watch inside the portal</a>
+        <a class="cta-btn ghost" href="/register">Register to participate</a>
+      </div>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 400 400" width="72%" fill="none" stroke="#f7d66b" stroke-width="1.4" aria-hidden="true">
+        <rect x="70" y="110" width="260" height="160" rx="16" stroke-width="2.4"/>
+        <path d="M172 158 L240 190 L172 222 Z" fill="#f5bd32" stroke="none"/>
+        <path d="M120 310 H280" opacity=".4"/>
+        <circle cx="200" cy="60" r="16" opacity=".55"/>
+        <path d="M200 44 v-18 M186 50 l-12 -12 M214 50 l12 -12" opacity=".55"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. VOX EXCELLENCE ============ -->
+<section class="chapter" id="excellence" style="background:var(--navy-900)">
+  <div class="chapter-head">
+    <div class="chapter-meta reveal"><span class="roman">Chapter V</span><span class="rule"></span></div>
+    <h2 class="reveal">Vox <em>Excellence</em></h2>
+    <p class="lede reveal d1">Voice of the Church. Recognizing growth, commitment, and service to the mission, published for the whole community to celebrate.</p>
+  </div>
+  <div class="grid">
+    <div class="glass card reveal"><div class="top"><span class="no">♕</span><span class="tag">Recognition</span></div><h4>Published Achievements</h4><p>Admin-reviewed achievements appear on the public wall with gold-badge cards, photos, and stories worth sharing.</p><a class="more" href="/register">Start your journey →</a></div>
+    <div class="glass card reveal d1"><div class="top"><span class="no">✦</span><span class="tag">Certificates</span></div><h4>Course Certificates</h4><p>Complete CISCAF tracks and earn verifiable certificates linked to your Vox ID.</p><a class="more" href="/register">Earn yours →</a></div>
+    <div class="glass card reveal d2"><div class="top"><span class="no">✵</span><span class="tag">Milestones</span></div><h4>Growth Milestones</h4><p>From first enrollment to capstone missioning, every step of formation is tracked and honored.</p><a class="more" href="/register">Begin →</a></div>
+  </div>
+</section>
+
+<!-- ============ 8. TRAINERS ============ -->
+<section class="chapter" id="trainers">
+  <div class="featured reveal">
+    <div class="txt">
+      <span class="pill">Trainers &amp; mentors</span>
+      <h3>Teach what you have mastered</h3>
+      <p>Priests, religious, and lay experts: bring your craft to the next generation of Catholic communicators. Apply with your skills and sample work; the commission reviews every application, and approved trainers receive courses, students, and a teaching profile.</p>
+      <div class="actions">
+        <a class="cta-btn" href="/register">Apply as a trainer</a>
+        <a class="cta-btn ghost" href="/directory">Meet the community</a>
+      </div>
+    </div>
+    <div class="art">
+      <svg viewBox="0 0 400 400" width="72%" fill="none" stroke="#f7d66b" stroke-width="1.4" aria-hidden="true">
+        <circle cx="200" cy="140" r="46" stroke-width="2.2"/>
+        <path d="M120 320 q0 -90 80 -90 q80 0 80 90" stroke-width="2.2"/>
+        <circle cx="96" cy="180" r="26" opacity=".5"/>
+        <circle cx="304" cy="180" r="26" opacity=".5"/>
+        <path d="M56 300 q0 -62 40 -70 M344 300 q0 -62 -40 -70" opacity=".5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. MEMBERSHIP ============ -->
+<section class="chapter" id="membership" style="background:var(--navy-900)">
+  <div class="chapter-head">
+    <div class="chapter-meta reveal"><span class="roman">Chapter VI</span><span class="rule"></span></div>
+    <h2 class="reveal">Membership &amp; <em>Vox ID</em></h2>
+    <p class="lede reveal d1">One verified identity for the whole ecosystem. Register once, get reviewed by the commission, and carry your credential everywhere.</p>
+  </div>
+  <div class="grid">
+    <div class="glass card reveal"><div class="top"><span class="no">01</span><span class="tag royal">Identity</span></div><h4>Your Vox ID</h4><p>A signed digital credential that dioceses, parishes, and partners can verify in seconds.</p><a class="more" href="/verify">Verify a Vox ID →</a></div>
+    <div class="glass card reveal d1"><div class="top"><span class="no">02</span><span class="tag royal">Access</span></div><h4>Member Dashboard</h4><p>Your courses, events, groups, notifications, and profile in one personalized workspace.</p><a class="more" href="/app">Open the portal →</a></div>
+    <div class="glass card reveal d2"><div class="top"><span class="no">03</span><span class="tag royal">Community</span></div><h4>Verified Directory</h4><p>Find collaborators by profession, parish, diocese, and ministry across the whole network.</p><a class="more" href="/directory">Open the directory →</a></div>
+  </div>
+</section>
+
+<!-- ============ 10. TRUST / STATS ============ -->
+<div class="band">
+  <div class="band-inner">
+    <div class="reveal"><div class="num"><i data-count="500">0</i></div><div class="lbl">Members in the registry</div></div>
+    <div class="reveal d1"><div class="num"><i data-count="24">0</i></div><div class="lbl">Courses &amp; tracks</div></div>
+    <div class="reveal d2"><div class="num"><i data-count="12">0</i></div><div class="lbl">Live sessions per cohort</div></div>
+    <div class="reveal d3"><div class="num"><i data-count="1">0</i></div><div class="lbl">Mission</div></div>
+  </div>
+</div>
+
+<!-- ============ 11. FINAL CTA ============ -->
+<section class="finale" id="join">
+  <p class="eyebrow reveal">Applications open</p>
+  <h2 class="reveal d1">Be the voice.<br/><em>Build the mission.</em></h2>
+  <p class="reveal d2">Join Vox Ecclesiae today. Create your verified identity, begin your formation, and take your place in the Church's digital mission.</p>
+  <a class="cta-btn reveal d3" href="/register" style="font-size:15px;padding:16px 38px">Join Vox Ecclesiae today</a>
+</section>
+
+<!-- ============ 12. FOOTER ============ -->
+<footer>
+  <div class="foot-grid">
+    <div>
+      <div class="fbrand">🕊️ Vox Ecclesiae</div>
+      <div class="ftag">Learn faith. Build community. Become the voice of the Church.</div>
+    </div>
+    <nav aria-label="Footer">
+      <a href="#mission">About</a>
+      <a href="#courses">Courses</a>
+      <a href="#membership">Membership</a>
+      <a href="#voxgroup">Vox Group</a>
+      <a href="#madhatv">Madha TV</a>
+      <a href="#excellence">Achievements</a>
+      <a href="/app">Member portal</a>
+      <a href="/verify">Verify Vox ID</a>
+      <a href="/admin">Admin</a>
+    </nav>
+  </div>
+  <div class="foot-base">
+    <span>© 2026 Vox Ecclesiae · Catholic Digital Commission Registry</span>
+    <span>English · தமிழ்</span>
+  </div>
+</footer>
+
+<script type="module" src="/src/landing.ts"></script>
+</body>
+</html>
