@@ -70,7 +70,8 @@ import {
   Pause,
   FileText,
   Check,
-  Menu
+  Menu,
+  GraduationCap
 } from 'lucide-react';
 
 const MemberForm = lazy(() => import('./components/MemberForm'));
@@ -80,6 +81,8 @@ const AdminDashboard = lazy(() => import('./components/AdminDashboard'));
 const MyProfile = lazy(() => import('./components/MyProfile'));
 const ConnectHub = lazy(() => import('./components/ConnectHub'));
 const ResourcesLibrary = lazy(() => import('./components/ResourcesLibrary'));
+const CourseCatalog = lazy(() => import('./features/courses/CourseCatalog'));
+const CourseAdminManager = lazy(() => import('./features/courses/CourseAdminManager'));
 
 type PortalMode = 'welcome' | 'member-form' | 'member-tracker' | 'admin' | 'directory' | 'analytics' | 'import-export' | 'audit-logs';
 
@@ -126,7 +129,7 @@ function AppContent({
   const [isFirebaseQuotaExceeded, setIsFirebaseQuotaExceeded] = useState<boolean>(false);
   
   // Secondary sub-tab for Admin Dashboard - support 'profile' as a custom sub-tab!
-  const [adminTab, setAdminTab] = useState<'dashboard' | 'directory' | 'analytics' | 'import-export' | 'audit-logs' | 'admins' | 'profile'>('dashboard');
+  const [adminTab, setAdminTab] = useState<'dashboard' | 'directory' | 'courses' | 'analytics' | 'import-export' | 'audit-logs' | 'admins' | 'profile'>('dashboard');
   
   // Admin Authorization & Profiles State
   const isAdminAuthenticated = authRole === 'admin';
@@ -1402,6 +1405,17 @@ function AppContent({
                 </button>
                 <button
                   type="button"
+                  onClick={() => setWelcomeTab('courses')}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'courses' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  role="tab"
+                  aria-selected={welcomeTab === 'courses'}
+                  aria-controls="pub-tab-courses"
+                  tabIndex={welcomeTab === 'courses' ? 0 : -1}
+                >
+                  🎓 Courses
+                </button>
+                <button
+                  type="button"
                   onClick={() => setWelcomeTab('announcements')}
                   className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'announcements' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
                   role="tab"
@@ -1762,6 +1776,18 @@ function AppContent({
               )}
 
               {/* TAB E: DIGITIZED ECOSYSTEM CENTRAL (CATHOLIC CONNECT) */}
+              {/* TAB: CISCAF COURSES & FORMATION */}
+              {welcomeTab === 'courses' && (
+                <div id="pub-tab-courses" role="tabpanel">
+                  <CourseCatalog
+                    memberUid={firebaseUser?.uid}
+                    memberName={authenticatedMember?.fullName ?? firebaseUser?.displayName ?? undefined}
+                    onRequireSignIn={() => setPortalMode('member-form')}
+                    onAddActivityLog={addActivityLog}
+                  />
+                </div>
+              )}
+
               {welcomeTab === 'resources' && (
                 <div id="pub-tab-connect" role="tabpanel">
                   <ConnectHub 
@@ -2133,6 +2159,14 @@ function AppContent({
                     </button>
 
                     <button
+                      onClick={() => { setAdminTab('courses'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
+                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'courses' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
+                    >
+                      <GraduationCap className={`w-4 h-4 ${adminTab === 'courses' ? 'text-amber-400' : 'text-slate-400'}`} />
+                      <span>CISCAF Courses</span>
+                    </button>
+
+                    <button
                       onClick={() => { setAdminTab('audit-logs'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
                       className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'audit-logs' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
                     >
@@ -2215,6 +2249,7 @@ function AppContent({
                   <h1 className="text-xs md:text-sm font-bold font-display uppercase tracking-wider text-slate-950 leading-none truncate">
                     {adminTab === 'dashboard' && 'Clerical Council Dashboard'}
                     {adminTab === 'directory' && 'Cathfluencer Dossier Records'}
+                    {adminTab === 'courses' && 'CISCAF Course Manager'}
                     {adminTab === 'analytics' && 'Commission statistics'}
                     {adminTab === 'import-export' && 'Importer & Exporter'}
                     {adminTab === 'audit-logs' && 'Administrative Registry Audit'}
@@ -2863,6 +2898,13 @@ function AppContent({
               )}
 
               {/* METRICS VIEW */}
+              {adminTab === 'courses' && authenticatedAdmin && (
+                <CourseAdminManager
+                  adminUid={firebaseUser?.uid ?? ''}
+                  onAddActivityLog={addActivityLog}
+                />
+              )}
+
               {adminTab === 'analytics' && (
                 <PrivacyAnalyticsDashboard members={members} events={events} />
               )}

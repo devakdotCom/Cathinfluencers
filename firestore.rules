@@ -314,6 +314,46 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    function validCourse(data) {
+      return validString(data.id, 1, 128)
+        && validString(data.title, 1, 160)
+        && validString(data.description, 1, 2000)
+        && data.status in ['draft', 'published', 'archived']
+        && data.type in ['free', 'paid']
+        && data.priceInr is number && data.priceInr >= 0
+        && data.durationWeeks is number && data.durationWeeks >= 1;
+    }
+
+    match /courses/{courseId} {
+      // Anyone can read published courses; admins can read every status.
+      allow read: if resource.data.status == 'published' || isAdmin();
+      allow create, update: if isAdmin() && validCourse(request.resource.data);
+      allow delete: if isAdmin();
+    }
+
+    match /enrollments/{enrollmentId} {
+      // Members may self-enroll only into free, published courses, only for
+      // themselves, and only with the deterministic id courseId_uid.
+      // Paid enrollments are created server-side after payment verification.
+      allow create: if signedIn()
+        && request.resource.data.memberUid == request.auth.uid
+        && enrollmentId == request.resource.data.courseId + '_' + request.auth.uid
+        && validString(request.resource.data.courseId, 1, 128)
+        && validString(request.resource.data.memberName, 1, 200)
+        && request.resource.data.status == 'active'
+        && request.resource.data.paymentStatus == 'not_required'
+        && request.resource.data.paymentAmountInr == 0
+        && get(/databases/$(database)/documents/courses/$(request.resource.data.courseId)).data.status == 'published'
+        && get(/databases/$(database)/documents/courses/$(request.resource.data.courseId)).data.type == 'free';
+      // Members may only cancel their own enrollment (single-field change).
+      allow update: if isAdmin()
+        || (owns(resource.data.memberUid)
+          && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status'])
+          && request.resource.data.status == 'cancelled');
+      allow read: if isAdmin() || owns(resource.data.memberUid);
+      allow delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }

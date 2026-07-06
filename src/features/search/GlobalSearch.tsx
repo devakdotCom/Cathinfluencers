@@ -22,6 +22,7 @@ import { Badge, Button, EmptyState } from '../../components/ui/primitives';
 export type PublicSection =
   | 'home'
   | 'directory'
+  | 'courses'
   | 'announcements'
   | 'events'
   | 'resources'
