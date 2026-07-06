@@ -89,6 +89,10 @@ const VoxGroupHub = lazy(() => import('./features/voxgroup/VoxGroupHub'));
 const VoxGroupAdminManager = lazy(() => import('./features/voxgroup/VoxGroupAdminManager'));
 const TrainersHub = lazy(() => import('./features/trainers/TrainersHub'));
 const TrainerAdminManager = lazy(() => import('./features/trainers/TrainerAdminManager'));
+const MadhaTvHub = lazy(() => import('./features/madhatv/MadhaTvHub'));
+const MadhaTvAdminManager = lazy(() => import('./features/madhatv/MadhaTvAdminManager'));
+const CampaignAdminManager = lazy(() => import('./features/campaigns/CampaignAdminManager'));
+const ReportsDashboard = lazy(() => import('./features/reports/ReportsDashboard'));
 
 type PortalMode = 'welcome' | 'member-form' | 'member-tracker' | 'admin' | 'directory' | 'analytics' | 'import-export' | 'audit-logs';
 
@@ -135,7 +139,7 @@ function AppContent({
   const [isFirebaseQuotaExceeded, setIsFirebaseQuotaExceeded] = useState<boolean>(false);
   
   // Secondary sub-tab for Admin Dashboard - support 'profile' as a custom sub-tab!
-  const [adminTab, setAdminTab] = useState<'dashboard' | 'directory' | 'courses' | 'excellence' | 'voxgroup' | 'trainers' | 'analytics' | 'import-export' | 'audit-logs' | 'admins' | 'profile'>('dashboard');
+  const [adminTab, setAdminTab] = useState<'dashboard' | 'directory' | 'courses' | 'excellence' | 'voxgroup' | 'trainers' | 'madhatv' | 'campaigns' | 'reports' | 'analytics' | 'import-export' | 'audit-logs' | 'admins' | 'profile'>('dashboard');
   
   // Admin Authorization & Profiles State
   const isAdminAuthenticated = authRole === 'admin';
@@ -1455,6 +1459,17 @@ function AppContent({
                 </button>
                 <button
                   type="button"
+                  onClick={() => setWelcomeTab('madhatv')}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'madhatv' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  role="tab"
+                  aria-selected={welcomeTab === 'madhatv'}
+                  aria-controls="pub-tab-madhatv"
+                  tabIndex={welcomeTab === 'madhatv' ? 0 : -1}
+                >
+                  📺 Madha TV
+                </button>
+                <button
+                  type="button"
                   onClick={() => setWelcomeTab('announcements')}
                   className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'announcements' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
                   role="tab"
@@ -1864,6 +1879,18 @@ function AppContent({
                 </div>
               )}
 
+              {/* TAB: MADHA TV PROGRAMS & PARTICIPATION */}
+              {welcomeTab === 'madhatv' && (
+                <div id="pub-tab-madhatv" role="tabpanel">
+                  <MadhaTvHub
+                    memberUid={firebaseUser?.uid}
+                    memberName={authenticatedMember?.fullName ?? firebaseUser?.displayName ?? undefined}
+                    onRequireSignIn={() => setPortalMode('member-form')}
+                    onAddActivityLog={addActivityLog}
+                  />
+                </div>
+              )}
+
               {welcomeTab === 'resources' && (
                 <div id="pub-tab-connect" role="tabpanel">
                   <ConnectHub 
@@ -2267,6 +2294,30 @@ function AppContent({
                     </button>
 
                     <button
+                      onClick={() => { setAdminTab('madhatv'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
+                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'madhatv' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
+                    >
+                      <Play className={`w-4 h-4 ${adminTab === 'madhatv' ? 'text-amber-400' : 'text-slate-400'}`} />
+                      <span>Madha TV</span>
+                    </button>
+
+                    <button
+                      onClick={() => { setAdminTab('campaigns'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
+                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'campaigns' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
+                    >
+                      <ExternalLink className={`w-4 h-4 ${adminTab === 'campaigns' ? 'text-amber-400' : 'text-slate-400'}`} />
+                      <span>Campaigns</span>
+                    </button>
+
+                    <button
+                      onClick={() => { setAdminTab('reports'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
+                      className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'reports' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
+                    >
+                      <FileText className={`w-4 h-4 ${adminTab === 'reports' ? 'text-amber-400' : 'text-slate-400'}`} />
+                      <span>Reports</span>
+                    </button>
+
+                    <button
                       onClick={() => { setAdminTab('audit-logs'); setBulkSelection([]); setIsMobileSidebarOpen(false); }}
                       className={`w-full flex items-center space-x-3 px-3 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wider transition cursor-pointer ${adminTab === 'audit-logs' ? 'bg-amber-500/10 text-amber-300' : 'text-slate-400 hover:bg-slate-850 hover:text-white'}`}
                     >
@@ -2353,6 +2404,9 @@ function AppContent({
                     {adminTab === 'excellence' && 'Vox Excellence Review'}
                     {adminTab === 'voxgroup' && 'Vox Group Management'}
                     {adminTab === 'trainers' && 'Trainer Applications & Assignments'}
+                    {adminTab === 'madhatv' && 'Madha TV Programs & Participants'}
+                    {adminTab === 'campaigns' && 'Campaign Communications Planner'}
+                    {adminTab === 'reports' && 'Reports & Ministry Analytics'}
                     {adminTab === 'analytics' && 'Commission statistics'}
                     {adminTab === 'import-export' && 'Importer & Exporter'}
                     {adminTab === 'audit-logs' && 'Administrative Registry Audit'}
@@ -3027,6 +3081,24 @@ function AppContent({
                   adminUid={firebaseUser?.uid ?? ''}
                   onAddActivityLog={addActivityLog}
                 />
+              )}
+
+              {adminTab === 'madhatv' && authenticatedAdmin && (
+                <MadhaTvAdminManager
+                  adminUid={firebaseUser?.uid ?? ''}
+                  onAddActivityLog={addActivityLog}
+                />
+              )}
+
+              {adminTab === 'campaigns' && authenticatedAdmin && (
+                <CampaignAdminManager
+                  adminUid={firebaseUser?.uid ?? ''}
+                  onAddActivityLog={addActivityLog}
+                />
+              )}
+
+              {adminTab === 'reports' && authenticatedAdmin && (
+                <ReportsDashboard members={members} />
               )}
 
               {adminTab === 'analytics' && (

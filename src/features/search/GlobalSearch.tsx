@@ -26,6 +26,7 @@ export type PublicSection =
   | 'excellence'
   | 'voxgroup'
   | 'trainers'
+  | 'madhatv'
   | 'announcements'
   | 'events'
   | 'resources'

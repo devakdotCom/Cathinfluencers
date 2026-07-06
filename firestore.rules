@@ -449,6 +449,45 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    match /madhaTvPrograms/{programId} {
+      // Anyone can see published programs; reviewers manage them.
+      allow read: if resource.data.status == 'published' || isReviewer();
+      allow create, update: if isReviewer()
+        && validString(request.resource.data.title, 1, 160)
+        && validString(request.resource.data.description, 1, 2000)
+        && request.resource.data.status in ['draft', 'published', 'archived']
+        && request.resource.data.participationOpen is bool;
+      allow delete: if isAdmin();
+    }
+
+    match /madhaTvParticipants/{participantId} {
+      // Members register only as themselves, only for published programs with
+      // open registration, with the deterministic id programId_uid.
+      allow create: if signedIn()
+        && request.resource.data.memberUid == request.auth.uid
+        && participantId == request.resource.data.programId + '_' + request.auth.uid
+        && validString(request.resource.data.memberName, 1, 200)
+        && request.resource.data.status == 'pending'
+        && get(/databases/$(database)/documents/madhaTvPrograms/$(request.resource.data.programId)).data.status == 'published'
+        && get(/databases/$(database)/documents/madhaTvPrograms/$(request.resource.data.programId)).data.participationOpen == true;
+      // Only reviewers approve or reject participants.
+      allow update: if isReviewer()
+        && request.resource.data.status in ['pending', 'approved', 'rejected']
+        && request.resource.data.memberUid == resource.data.memberUid;
+      allow read: if isReviewer() || owns(resource.data.memberUid);
+      allow delete: if isAdmin();
+    }
+
+    match /campaigns/{campaignId} {
+      // Internal communications planner: reviewers only, never public.
+      allow read: if isReviewer();
+      allow create, update: if isReviewer()
+        && validString(request.resource.data.title, 1, 160)
+        && validString(request.resource.data.message, 1, 2000)
+        && request.resource.data.status in ['draft', 'published', 'archived'];
+      allow delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
