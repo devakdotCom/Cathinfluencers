@@ -23,6 +23,7 @@ export type PublicSection =
   | 'home'
   | 'directory'
   | 'courses'
+  | 'excellence'
   | 'announcements'
   | 'events'
   | 'resources'

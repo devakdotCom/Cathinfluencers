@@ -354,6 +354,31 @@ service cloud.firestore {
       allow delete: if isAdmin();
     }
 
+    function validAchievementSubmission(data) {
+      return validString(data.id, 1, 128)
+        && validString(data.title, 1, 160)
+        && validString(data.memberName, 1, 200)
+        && validString(data.description, 1, 1200)
+        && data.status == 'pending'
+        && data.memberUid == request.auth.uid
+        && data.createdBy == request.auth.uid;
+    }
+
+    match /achievements/{achievementId} {
+      // Public wall shows only published items; owners see their own; admins see all.
+      allow read: if resource.data.status == 'published'
+        || isAdmin()
+        || owns(resource.data.memberUid);
+      // Members submit into the review queue only, always as themselves.
+      allow create: if signedIn() && validAchievementSubmission(request.resource.data);
+      // Only reviewers move items through the workflow; submitters cannot
+      // approve or publish their own achievements.
+      allow update: if isReviewer()
+        && request.resource.data.status in ['pending', 'approved', 'published', 'rejected']
+        && request.resource.data.memberUid == resource.data.memberUid;
+      allow delete: if isAdmin();
+    }
+
     match /{document=**} {
       allow read, write: if false;
     }
