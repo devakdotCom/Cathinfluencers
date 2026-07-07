@@ -46,12 +46,12 @@ export function AuthFlowNavigation({
         ) : (
           <ArrowLeft className="size-4" aria-hidden="true" />
         )}
-        <span className="auth-flow-back-desktop">Back to Main Portal</span>
+        <span className="auth-flow-back-desktop">Back to Vox Ecclesiae</span>
         <span className="auth-flow-back-mobile">Back</span>
       </button>
 
       <ol className="auth-flow-breadcrumb" aria-label="Breadcrumb">
-        <li>Portal Home</li>
+        <li>Vox Ecclesiae</li>
         <li aria-hidden="true">/</li>
         <li aria-current="page">{currentLabel}</li>
       </ol>

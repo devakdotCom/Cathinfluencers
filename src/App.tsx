@@ -5,7 +5,7 @@ import { getParishesByDiocese, getNormalizedDiocese, getNormalizedParish } from 
 import MemberCard from './components/MemberCard';
 import { formatBase64ToImageSource } from './utils/imageUtils';
 import { leadersList } from './data/leadersData';
-import { VoxEcclesiaeLogo } from './components/VoxEcclesiaeLogo';
+import { VoxShield } from './components/VoxShield';
 import { 
   hasActiveFirebase, 
   saveAdminProfile, 
@@ -1111,28 +1111,29 @@ function AppContent({
             </div>
           )}
 
-          <div className="w-full bg-[#161224] border border-amber-500/20 rounded-2xl p-8 shadow-2xl relative overflow-hidden" id="admin-login-box">
-            <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-amber-400 via-yellow-500 to-amber-600 font-sans"></div>
-          
-          <div className="text-center space-y-4 mb-6">
-            <div className="w-20 h-20 mx-auto filter drop-shadow-[0_5px_10px_rgba(245,158,11,0.2)]">
-              <VoxEcclesiaeLogo size="100%" />
+          <div className="w-full bg-slate-900/70 backdrop-blur-md border border-slate-700/60 rounded-2xl p-8 shadow-2xl relative overflow-hidden" id="admin-login-box">
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-600 font-sans"></div>
+            <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(ellipse 70% 50% at 50% 115%, rgba(245,189,50,.08), transparent 70%)' }}></div>
+
+          <div className="text-center space-y-4 mb-6 relative">
+            <div className="w-16 h-16 mx-auto filter drop-shadow-[0_8px_20px_rgba(245,189,50,0.3)]">
+              <VoxShield size="100%" />
             </div>
             <div>
-              <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 font-display">Archdiocese of Madras - Mylapore</span>
-              <h3 className="text-xl font-display font-semibold uppercase tracking-wider text-white mt-1">
+              <span className="text-[9px] font-black uppercase tracking-[0.3em] text-amber-400">Vox Ecclesiae · Faith · Formation · Community</span>
+              <h3 className="text-2xl font-display font-semibold uppercase tracking-wider text-white mt-2">
                 {authMode === 'reset'
                   ? 'Reset Your Password'
                   : authMode === 'register'
-                    ? 'Create Your Secure Account'
-                    : 'Vox Ecclesiae Secure Gate'}
+                    ? 'Create Your Account'
+                    : 'Welcome Back'}
               </h3>
               <p className="text-xs text-slate-400 leading-relaxed mt-2 select-none font-medium">
                 {authMode === 'reset'
                   ? 'Enter your registered email address and we will send a secure password reset link.'
                   : authMode === 'register'
-                    ? 'Create your portal credentials before completing your Cathfluencer registration.'
-                    : 'Identify yourself using your registered email address to safely retrieve your digital badge, audit register entries, or configure systems.'}
+                    ? 'Start your Catholic digital identity and membership journey.'
+                    : 'Sign in to your ministry workspace, courses, and verified Vox ID.'}
               </p>
             </div>
           </div>
@@ -1185,8 +1186,8 @@ function AppContent({
                 : authMode === 'reset'
                   ? 'Send Reset Link'
                   : authMode === 'register'
-                    ? 'Create Secure Account'
-                    : 'Sign In Securely'}
+                    ? 'Create Account'
+                    : 'Sign In'}
             </button>
 
             {authMode === 'sign-in' && (
@@ -1233,7 +1234,7 @@ function AppContent({
                 }}
                 className="text-amber-400 font-bold hover:text-white transition underline cursor-pointer"
               >
-                Enroll &amp; Register fresh digital handle here ✍️
+                Join Vox Ecclesiae, create your account
               </button>
             </p>
           </div>
@@ -1332,25 +1333,23 @@ function AppContent({
       {portalMode === 'welcome' && (
         <div className="vox-mobile-content min-h-screen bg-slate-950 text-white font-sans flex flex-col relative select-text overflow-x-clip" id="portal-landing-page">
           {/* Main Hero Background Banner */}
-          <div 
-            className="relative py-9 md:py-14 px-4 text-center overflow-hidden border-b border-slate-800/80 flex flex-col items-center justify-center bg-cover bg-center"
+          <div
+            className="relative py-10 md:py-16 px-4 text-center overflow-hidden border-b border-slate-800/80 flex flex-col items-center justify-center"
             style={{
-              backgroundImage: "linear-gradient(to bottom, rgba(15, 10, 26, 0.94), rgba(8, 4, 18, 0.98)), url('https://upload.wikimedia.org/wikipedia/commons/e/ee/San_Thome_Basilica%2C_Chennai.jpg')",
+              background:
+                'radial-gradient(ellipse 55% 45% at 50% -8%, rgba(47,111,237,.18), transparent 70%), radial-gradient(ellipse 45% 35% at 50% 112%, rgba(245,189,50,.12), transparent 70%), #050712',
             }}
           >
-            {/* Sacred Radial Glow */}
-            <div className="absolute inset-0 bg-radial-gradient from-amber-500/10 via-transparent to-transparent z-0 opacity-45 pointer-events-none" />
-            
             <div className="w-full min-w-0 max-w-4xl mx-auto space-y-5 z-10 relative">
-              <div className="w-16 h-16 md:w-20 md:h-20 mx-auto filter drop-shadow-[0_8px_16px_rgba(245,158,11,0.25)]">
-                <VoxEcclesiaeLogo size="100%" />
+              <div className="w-16 h-16 md:w-20 md:h-20 mx-auto filter drop-shadow-[0_10px_24px_rgba(245,189,50,0.35)]">
+                <VoxShield size="100%" />
               </div>
-              <div className="space-y-1">
-                <p className="text-[10px] font-black uppercase tracking-widest text-amber-400 font-display">Archdiocese of Madras - Mylapore</p>
-                <h1 className="text-2xl sm:text-3xl md:text-5xl font-display font-black uppercase tracking-tight text-white">
-                  VOX ECCLESIAE
+              <div className="space-y-2">
+                <p className="text-[10px] font-black uppercase tracking-[0.32em] text-amber-400">Vox Ecclesiae · Catholic Digital Commission</p>
+                <h1 className="text-2xl sm:text-3xl md:text-5xl font-display font-bold uppercase tracking-tight text-white">
+                  The Voice of the Church, <em className="font-serif italic normal-case text-amber-400">reimagined</em>
                 </h1>
-                <p className="text-xs md:text-sm text-slate-350 max-w-xl mx-auto leading-relaxed">
+                <p className="text-xs md:text-sm text-slate-400 max-w-xl mx-auto leading-relaxed">
                   Digital Media Ministry &amp; Cathfluencer Registry. Let us stand united to catalog, empower, and elevate local Catholic content creators and parish apologists.
                 </p>
               </div>
@@ -2064,7 +2063,7 @@ function AppContent({
                   <div className="flex justify-between items-start border-b border-amber-500/20 pb-3 mb-4">
                     <div className="flex items-center space-x-2">
                       <div className="w-6 h-6 filter drop-shadow-[0_2px_4px_rgba(245,158,11,0.2)]">
-                        <VoxEcclesiaeLogo size="100%" />
+                        <VoxShield size="100%" />
                       </div>
                       <span className="font-display font-bold text-[10px] uppercase tracking-widest text-amber-200">VOX ECCLESIAE COUNCIL</span>
                     </div>
@@ -2155,7 +2154,7 @@ function AppContent({
             
             <div className="text-center space-y-4 mb-8">
               <div className="w-20 h-20 mx-auto filter drop-shadow-[0_5px_10px_rgba(245,158,11,0.2)]">
-                <VoxEcclesiaeLogo size="100%" />
+                <VoxShield size="100%" />
               </div>
               <div>
                 <span className="text-[9px] font-black uppercase tracking-widest text-amber-400 font-display">Clergy Registry Administration</span>
@@ -2205,7 +2204,7 @@ function AppContent({
               <div className="p-6 border-b border-slate-850 flex items-center justify-between">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 filter drop-shadow-[0_2px_5px_rgba(245,158,11,0.25)]">
-                    <VoxEcclesiaeLogo size="100%" />
+                    <VoxShield size="100%" />
                   </div>
                   <span className="font-bold text-base tracking-tight uppercase text-white font-display">Vox Ecclesiae</span>
                 </div>
