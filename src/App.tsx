@@ -99,9 +99,11 @@ type PortalMode = 'welcome' | 'member-form' | 'member-tracker' | 'admin' | 'dire
 function AppContent({
   initialPortalMode = 'welcome',
   initialAuthMode,
+  initialPublicSection,
 }: {
   initialPortalMode?: PortalMode;
   initialAuthMode?: 'sign-in' | 'register' | 'reset';
+  initialPublicSection?: PublicSection;
 }) {
   const dialog = useDialog();
   const navigate = useNavigate();
@@ -183,7 +185,7 @@ function AppContent({
   };
   
   // Welcome Public Portal Tab & Search filter states
-  const [welcomeTab, setWelcomeTab] = useState<PublicSection>('home');
+  const [welcomeTab, setWelcomeTab] = useState<PublicSection>(initialPublicSection ?? 'home');
   const publicTabsRef = useRef<HTMLDivElement>(null);
   const [publicTabsCanScrollLeft, setPublicTabsCanScrollLeft] = useState(false);
   const [publicTabsCanScrollRight, setPublicTabsCanScrollRight] = useState(true);
@@ -3607,9 +3609,11 @@ function AppContent({
 export default function App({
   initialPortalMode,
   initialAuthMode,
+  initialPublicSection,
 }: {
   initialPortalMode?: PortalMode;
   initialAuthMode?: 'sign-in' | 'register' | 'reset';
+  initialPublicSection?: PublicSection;
 }) {
   return (
     <Suspense
@@ -3622,7 +3626,11 @@ export default function App({
         </div>
       )}
     >
-      <AppContent initialPortalMode={initialPortalMode} initialAuthMode={initialAuthMode} />
+      <AppContent
+        initialPortalMode={initialPortalMode}
+        initialAuthMode={initialAuthMode}
+        initialPublicSection={initialPublicSection}
+      />
     </Suspense>
   );
 }

@@ -28,6 +28,16 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/login" element={<App initialPortalMode="admin" />} />
             <Route path="/portal" element={<App />} />
             <Route path="/portal-hub" element={<App />} />
+            <Route path="/courses" element={<App initialPublicSection="courses" />} />
+            <Route path="/our-leaders" element={<App initialPublicSection="directory" />} />
+            <Route path="/excellence" element={<App initialPublicSection="excellence" />} />
+            <Route path="/vox-group" element={<App initialPublicSection="voxgroup" />} />
+            <Route path="/trainers" element={<App initialPublicSection="trainers" />} />
+            <Route path="/madha-tv" element={<App initialPublicSection="madhatv" />} />
+            <Route path="/chronicles" element={<App initialPublicSection="announcements" />} />
+            <Route path="/calendar-rsvp" element={<App initialPublicSection="events" />} />
+            <Route path="/catholic-connect" element={<App initialPublicSection="resources" />} />
+            <Route path="/resources" element={<App initialPublicSection="guidelines" />} />
             <Route path="/reset-password" element={<App initialPortalMode="admin" initialAuthMode="reset" />} />
             <Route path="/admin" element={<App initialPortalMode="admin" />} />
             <Route path="/auth/landing" element={<RoleLanding />} />
