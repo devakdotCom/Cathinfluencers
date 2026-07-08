@@ -5,7 +5,7 @@
   --vox-ink-800: #11182b;
   --vox-gold-300: #f7d66b;
   --vox-gold-400: #f5bd32;
-  --vox-orange-500: #f27705;
+  --vox-orange-500: #c9972f; /* unified deep gold (was orange) so gradients stay in the gold family */
   --vox-text: #f8fafc;
   --vox-muted: #9aa6bd;
   --vox-border: rgb(100 116 139 / 0.38);

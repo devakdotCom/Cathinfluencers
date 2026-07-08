@@ -496,7 +496,7 @@ Skills: ${JSON.stringify(req.body.skills)}`,
   );
 
   // SPA routes handled by app.html; the root "/" serves the static landing page (index.html).
-  const APP_ROUTE_PATTERN = /^\/(app|directory|register|reset-password|admin|auth|dashboard|verify|profile)(\/|$)/;
+  const APP_ROUTE_PATTERN = /^\/(app|directory|register|signup|login|portal|portal-hub|reset-password|admin|auth|dashboard|verify|profile)(\/|$)/;
 
   if (process.env.NODE_ENV !== "test") {
     if (process.env.NODE_ENV !== "production") {

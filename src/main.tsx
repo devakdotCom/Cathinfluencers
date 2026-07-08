@@ -24,6 +24,10 @@ createRoot(document.getElementById('root')!).render(
             <Route path="/app" element={<App />} />
             <Route path="/directory" element={<App initialPortalMode="directory" />} />
             <Route path="/register" element={<App initialPortalMode="member-form" />} />
+            <Route path="/signup" element={<App initialPortalMode="member-form" />} />
+            <Route path="/login" element={<App initialPortalMode="admin" />} />
+            <Route path="/portal" element={<App />} />
+            <Route path="/portal-hub" element={<App />} />
             <Route path="/reset-password" element={<App initialPortalMode="admin" initialAuthMode="reset" />} />
             <Route path="/admin" element={<App initialPortalMode="admin" />} />
             <Route path="/auth/landing" element={<RoleLanding />} />

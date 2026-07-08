@@ -1262,7 +1262,7 @@ function AppContent({
               }}
               className="text-white hover:text-amber-200 transition underline cursor-cmd"
             >
-              Main Entry 🏛️
+              Main Entry
             </button>
           )}
 
@@ -1399,7 +1399,7 @@ function AppContent({
                   aria-controls="pub-tab-lobby"
                   tabIndex={welcomeTab === 'home' ? 0 : -1}
                 >
-                  🏛️ Portal Hub
+                  Portal Hub
                 </button>
                 <button
                   type="button"
@@ -1410,7 +1410,7 @@ function AppContent({
                   aria-controls="pub-tab-leaders"
                   tabIndex={welcomeTab === 'directory' ? 0 : -1}
                 >
-                  👑 Our Leaders
+                  Our Leaders
                 </button>
                 <button
                   type="button"
@@ -1421,7 +1421,7 @@ function AppContent({
                   aria-controls="pub-tab-courses"
                   tabIndex={welcomeTab === 'courses' ? 0 : -1}
                 >
-                  🎓 Courses
+                  Courses
                 </button>
                 <button
                   type="button"
@@ -1432,7 +1432,7 @@ function AppContent({
                   aria-controls="pub-tab-excellence"
                   tabIndex={welcomeTab === 'excellence' ? 0 : -1}
                 >
-                  🏆 Excellence
+                  Excellence
                 </button>
                 <button
                   type="button"
@@ -1443,7 +1443,7 @@ function AppContent({
                   aria-controls="pub-tab-voxgroup"
                   tabIndex={welcomeTab === 'voxgroup' ? 0 : -1}
                 >
-                  ⁘ Vox Group
+                  Vox Group
                 </button>
                 <button
                   type="button"
@@ -1454,7 +1454,7 @@ function AppContent({
                   aria-controls="pub-tab-trainers"
                   tabIndex={welcomeTab === 'trainers' ? 0 : -1}
                 >
-                  🎙️ Trainers
+                  Trainers
                 </button>
                 <button
                   type="button"
@@ -1465,7 +1465,7 @@ function AppContent({
                   aria-controls="pub-tab-madhatv"
                   tabIndex={welcomeTab === 'madhatv' ? 0 : -1}
                 >
-                  📺 Madha TV
+                  Madha TV
                 </button>
                 <button
                   type="button"
@@ -1476,7 +1476,7 @@ function AppContent({
                   aria-controls="pub-tab-announcements"
                   tabIndex={welcomeTab === 'announcements' ? 0 : -1}
                 >
-                  📢 Chronicles
+                  Chronicles
                 </button>
                 <button
                   type="button"
@@ -1487,7 +1487,7 @@ function AppContent({
                   aria-controls="pub-tab-events"
                   tabIndex={welcomeTab === 'events' ? 0 : -1}
                 >
-                  📅 Calendar &amp; RSVP
+                  Calendar &amp; RSVP
                 </button>
                 <button
                   type="button"
@@ -1498,7 +1498,7 @@ function AppContent({
                   aria-controls="pub-tab-connect"
                   tabIndex={welcomeTab === 'resources' ? 0 : -1}
                 >
-                  🌐 Catholic Connect
+                  Catholic Connect
                 </button>
                 <button
                   type="button"
@@ -1509,7 +1509,7 @@ function AppContent({
                   aria-controls="pub-tab-resources"
                   tabIndex={welcomeTab === 'guidelines' ? 0 : -1}
                 >
-                  📚 Resources
+                  Resources
                 </button>
                 </div>
                 <button
