@@ -1334,7 +1334,7 @@ function AppContent({
         <div className="vox-mobile-content min-h-screen bg-slate-950 text-white font-sans flex flex-col relative select-text overflow-x-clip" id="portal-landing-page">
           {/* Main Hero Background Banner */}
           <div
-            className="relative py-10 md:py-16 px-4 text-center overflow-hidden border-b border-slate-800/80 flex flex-col items-center justify-center"
+            className="relative py-14 md:py-24 px-4 text-center overflow-hidden border-b border-slate-800/80 flex flex-col items-center justify-center"
             style={{
               background:
                 'radial-gradient(ellipse 55% 45% at 50% -8%, rgba(47,111,237,.18), transparent 70%), radial-gradient(ellipse 45% 35% at 50% 112%, rgba(245,189,50,.12), transparent 70%), #050712',
@@ -1368,7 +1368,7 @@ function AppContent({
                 </button>
                 <div
                   ref={publicTabsRef}
-                  className="flex md:flex-wrap items-center overflow-x-auto md:overflow-visible md:justify-center gap-1 px-12 md:px-1 py-1 bg-slate-900/90 border border-slate-800 rounded-2xl w-full min-w-0 backdrop-blur-md shadow-lg select-none"
+                  className="flex md:flex-wrap items-center overflow-x-auto md:overflow-visible md:justify-center gap-2 px-12 md:px-1 py-2 bg-transparent border-y border-slate-800/60 w-full min-w-0 select-none"
                   id="public-tabs-nav-bar"
                   role="tablist"
                   aria-label="Public portal sections"
@@ -1393,7 +1393,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('home')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'home' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'home' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'home'}
                   aria-controls="pub-tab-lobby"
@@ -1404,7 +1404,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('directory')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'directory' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'directory' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'directory'}
                   aria-controls="pub-tab-leaders"
@@ -1415,7 +1415,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('courses')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'courses' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'courses' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'courses'}
                   aria-controls="pub-tab-courses"
@@ -1426,7 +1426,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('excellence')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'excellence' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'excellence' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'excellence'}
                   aria-controls="pub-tab-excellence"
@@ -1437,7 +1437,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('voxgroup')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'voxgroup' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'voxgroup' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'voxgroup'}
                   aria-controls="pub-tab-voxgroup"
@@ -1448,7 +1448,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('trainers')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'trainers' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'trainers' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'trainers'}
                   aria-controls="pub-tab-trainers"
@@ -1459,7 +1459,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('madhatv')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'madhatv' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'madhatv' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'madhatv'}
                   aria-controls="pub-tab-madhatv"
@@ -1470,7 +1470,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('announcements')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'announcements' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'announcements' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'announcements'}
                   aria-controls="pub-tab-announcements"
@@ -1481,7 +1481,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('events')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'events' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'events' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'events'}
                   aria-controls="pub-tab-events"
@@ -1492,7 +1492,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('resources')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'resources' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'resources' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'resources'}
                   aria-controls="pub-tab-connect"
@@ -1503,7 +1503,7 @@ function AppContent({
                 <button
                   type="button"
                   onClick={() => setWelcomeTab('guidelines')}
-                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'guidelines' ? 'bg-amber-500 text-slate-950 shadow-md font-extrabold' : 'text-slate-400 hover:text-white hover:bg-white/5'}`}
+                  className={`shrink-0 px-3 py-1.5 border-0 rounded-xl text-[11px] font-black uppercase tracking-wider transition-all cursor-pointer ${welcomeTab === 'guidelines' ? 'text-amber-300 underline underline-offset-8 decoration-amber-400/70 decoration-2' : 'text-slate-400 hover:text-white'}`}
                   role="tab"
                   aria-selected={welcomeTab === 'guidelines'}
                   aria-controls="pub-tab-resources"

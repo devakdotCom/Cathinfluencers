@@ -31,6 +31,17 @@
   /* Royal blue accents (landing --royal #2f6fed, --royal-2 #5b8cff) */
   --color-sky-300: #5b8cff;
   --color-sky-500: #2f6fed;
+
+  /* ------------------------------------------------------------------
+     Editorial refinement tokens.
+     Sharper geometry and wider micro-label tracking give the whole app
+     a calmer, more institutional rhythm without touching any component.
+     ------------------------------------------------------------------ */
+  --radius-xl: 0.5rem;
+  --radius-2xl: 0.625rem;
+  --radius-3xl: 0.75rem;
+  --tracking-widest: 0.18em;
+  --tracking-wider: 0.08em;
 }
 
 html {
