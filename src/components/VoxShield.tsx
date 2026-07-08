@@ -6,30 +6,18 @@ interface VoxShieldProps {
 }
 
 /**
- * The unified Vox Ecclesiae gold shield mark, identical to the one on the
- * public landing page, so the portal and the website share one identity.
+ * The official Vox Ecclesiae crest (Commission for Social Communications,
+ * Archdiocese of Madras - Mylapore). Served from /crest.png in public/.
+ * Used everywhere the brand mark appears so the whole platform carries the
+ * one official identity.
  */
 export const VoxShield: React.FC<VoxShieldProps> = ({ className = '', size = '100%' }) => (
-  <svg
-    viewBox="0 0 100 100"
+  <img
+    src="/crest.png"
     width={size}
     height={size}
-    className={`select-none ${className}`}
-    xmlns="http://www.w3.org/2000/svg"
-    aria-hidden="true"
-  >
-    <path
-      d="M20 22 Q50 28 80 22 L80 55 Q80 74 50 88 Q20 74 20 55 Z"
-      fill="#0d1222"
-      stroke="#f5bd32"
-      strokeWidth="2.5"
-    />
-    <path
-      d="M50 34 V74 M36 46 H64"
-      stroke="#f7d66b"
-      strokeWidth="6"
-      strokeLinecap="round"
-    />
-    <circle cx="50" cy="15" r="6" fill="none" stroke="#f5bd32" strokeWidth="2" />
-  </svg>
+    alt="Vox Ecclesiae official crest"
+    className={`select-none object-contain ${className}`}
+    draggable={false}
+  />
 );
