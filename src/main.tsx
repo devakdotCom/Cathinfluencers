@@ -14,9 +14,13 @@ import './index.css';
 import './styles/design-system.css';
 import './styles/corporate-portal.css';
 import './styles/theme-fab.css';
-import { initVoxTheme } from './theme/voxTheme';
 
-initVoxTheme();
+// The portal always runs the dark theme it was designed for. The corporate
+// (white) theme currently only covers surfaces, not the portal's text colors,
+// which made pages render white-on-white. The landing page keeps both themes
+// and its own switcher; re-enable initVoxTheme() here only after a full
+// portal light-mode pass.
+document.documentElement.dataset.theme = 'dark';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
