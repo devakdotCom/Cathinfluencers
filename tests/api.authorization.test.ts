@@ -17,6 +17,16 @@ describe('API authorization', () => {
     await request(app).get('/api/status').expect(401);
   });
 
+  it('exposes public registry stats without authentication', async () => {
+    const response = await request(app).get('/api/public/stats').expect(200);
+    expect(response.body).toMatchObject({
+      memberCount: expect.any(Number),
+      courseCount: expect.any(Number),
+      liveSessionCount: expect.any(Number),
+      languageCount: expect.any(Number),
+    });
+  });
+
   it('protects destructive and AI endpoints', async () => {
     await request(app).post('/api/reset').expect(401);
     await request(app).post('/api/connect/summarize').send({ issueTitle: 'Test' }).expect(401);

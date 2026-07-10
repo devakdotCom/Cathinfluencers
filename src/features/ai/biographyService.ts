@@ -1,4 +1,4 @@
-import { apiFetch } from '../../services/apiClient';
+import { apiFetch, isApiConfigured } from '../../services/apiClient';
 
 export interface BiographyDraftInput {
   name: string;
@@ -70,6 +70,9 @@ export function createFallbackBiography(input: BiographyDraftInput): BiographyDr
 }
 
 async function requestProvider(input: BiographyDraftInput) {
+  if (!isApiConfigured()) {
+    throw new Error('Hosted AI API is not configured.');
+  }
   return apiFetch<{ success: true; drafts: Omit<BiographyDrafts, 'source'> }>(
     '/api/connect/draft-biography',
     { method: 'POST', body: JSON.stringify(input) },

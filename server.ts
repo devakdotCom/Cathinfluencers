@@ -255,6 +255,38 @@ export async function createApp() {
     res.json({ status: "ok", version: "3.0.0" });
   });
 
+  app.get("/api/public/stats", async (_req, res) => {
+    const fallback = {
+      memberCount: 0,
+      courseCount: 0,
+      liveSessionCount: 12,
+      languageCount: 2,
+      updatedAt: new Date().toISOString(),
+    };
+
+    if (process.env.NODE_ENV === "test" || !firebaseAdminReady()) {
+      return res.json(fallback);
+    }
+
+    try {
+      const db = getFirestore();
+      const [memberAggregate, courseAggregate] = await Promise.all([
+        db.collection("publicMembers").count().get(),
+        db.collection("courses").where("status", "==", "published").count().get(),
+      ]);
+      return res.json({
+        memberCount: memberAggregate.data().count,
+        courseCount: courseAggregate.data().count,
+        liveSessionCount: 12,
+        languageCount: 2,
+        updatedAt: new Date().toISOString(),
+      });
+    } catch (error) {
+      console.error("Public stats read failed:", error);
+      return res.json(fallback);
+    }
+  });
+
   app.post(
     "/api/public/credentials/verify",
     sensitiveLimiter,

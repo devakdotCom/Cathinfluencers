@@ -15,6 +15,11 @@ function apiUrl(path: string) {
   return `${apiBase}${path}`;
 }
 
+/** True when a separate Express API is configured (Cloud Run / local dev server). */
+export function isApiConfigured() {
+  return Boolean((import.meta.env.VITE_API_BASE_URL || '').trim());
+}
+
 export async function publicApiFetch<T>(path: string, init: RequestInit = {}): Promise<T> {
   const response = await fetch(apiUrl(path), {
     ...init,

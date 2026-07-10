@@ -8,6 +8,8 @@ coverage/
 !.env.example
 *firebase-adminsdk*.json
 *service-account*.json
+src/raw_*.csv
+src/mockData.ts
 
 .firebase/
 outputs/
