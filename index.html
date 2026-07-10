@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#050712" />
-<link rel="icon" type="image/png" href="/crest.png" />
+<link rel="icon" type="image/svg+xml" href="/crest.svg" />
 <title>Vox Ecclesiae · Faith, Formation &amp; Community Platform</title>
 <meta name="description" content="Vox Ecclesiae. Learn faith, build community, become the voice of the Church. Verified Cathfluencer registry, CISCAF courses, live formation, Madha TV, Vox Group, and Vox Excellence." />
 <meta property="og:title" content="Vox Ecclesiae · The Voice of the Church, Reimagined for the Digital Generation" />
@@ -13,9 +13,16 @@
 <meta property="og:url" content="https://www.voxecclesiae.in/" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Inter:wght@500;600;700;800&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+<script>
+(function () {
+  var theme = localStorage.getItem('vox-landing-theme');
+  document.documentElement.dataset.theme = theme === 'corporate' ? 'corporate' : 'dark';
+})();
+</script>
 <style>
-  :root{
+  :root,
+  html[data-theme="dark"]{
     --navy-950:#050712;
     --navy-900:#090c1a;
     --navy-850:#0d1222;
@@ -31,10 +38,15 @@
     --border:rgba(148,163,184,.18);
     --glass:rgba(255,255,255,.04);
     --glass-2:rgba(255,255,255,.07);
+    --header-bg:rgba(5,7,18,.78);
+    --on-gold:#0b0d16;
     --display:"Cinzel",Georgia,serif;
     --serif:"Cormorant Garamond",Georgia,serif;
     --sans:"Lato",-apple-system,Segoe UI,Roboto,sans-serif;
+    --surface-alt:var(--navy-900);
   }
+
+  html[data-theme="dark"] ::selection{background:var(--gold);color:var(--navy-950)}
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth;scroll-padding-top:80px}
   body{background:var(--navy-950);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:clip;min-width:320px}
@@ -44,9 +56,10 @@
 
   #progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--royal),var(--gold));z-index:1001;transition:width .1s linear}
 
-  header{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);height:68px;background:rgba(5,7,18,.78);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:transform .35s ease}
+  header{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);height:68px;background:var(--header-bg);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:transform .35s ease,background .25s ease}
   header.hide{transform:translateY(-100%)}
-  .brand{display:flex;align-items:center;gap:12px}
+  .brand{display:flex;align-items:center;gap:12px;min-width:0}
+  .hdr-actions{display:flex;align-items:center;gap:12px;flex-shrink:0}
   .brand .crest{width:36px;height:36px;flex:none}
   .brand .name{font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;line-height:1.15}
   .brand .edition{display:block;font-family:var(--sans);font-size:9px;text-transform:uppercase;letter-spacing:.28em;color:var(--gold);font-weight:700}
@@ -60,6 +73,7 @@
   .cta-btn.royal:hover{background:var(--royal-2);box-shadow:0 14px 45px rgba(47,111,237,.25)}
   .cta-btn.ghost{background:transparent;color:var(--text);border:1px solid var(--border)}
   .cta-btn.ghost:hover{background:var(--glass-2);box-shadow:none}
+  .chapter-alt{background:var(--surface-alt)}
   @media(max-width:1080px){nav.chapters{display:none}}
 
   /* ---------- hero ---------- */
@@ -75,6 +89,13 @@
   .hero .sub{max-width:640px;margin:28px auto 0;font-size:clamp(15px,1.6vw,19px);color:var(--muted)}
   .hero .ctas{display:flex;gap:12px;margin-top:40px;flex-wrap:wrap;justify-content:center}
   .hero .counts{display:flex;gap:clamp(22px,5vw,64px);margin-top:56px;flex-wrap:wrap;justify-content:center}
+  .hero-stack{width:100%;display:flex;flex-direction:column;align-items:center}
+  .hero-copy{width:100%;display:flex;flex-direction:column;align-items:center}
+  .corp-only{display:none}
+  html[data-theme="corporate"] .heritage-only{display:none}
+  html[data-theme="corporate"] .corp-only{display:block}
+  html[data-theme="corporate"] span.corp-only,html[data-theme="corporate"] .eyebrow .corp-only{display:inline}
+  html[data-theme="corporate"] figure.corp-only{display:block}
   .count .num{font-family:var(--serif);font-size:clamp(34px,4.6vw,52px);font-weight:600;line-height:1;color:var(--ivory)}
   .count .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--muted);margin-top:6px;font-weight:700}
   .scroll-cue{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);animation:bob 2.4s ease-in-out infinite;font-weight:700}
@@ -199,8 +220,9 @@
 
 <header id="hdr">
   <a class="brand" href="#top">
-    <img class="crest" src="/crest.png" alt="" aria-hidden="true" />
+    <img class="crest" src="/crest.svg" alt="" aria-hidden="true" width="36" height="36" />
     <span class="name">Vox Ecclesiae<span class="edition">Faith · Formation · Community</span></span>
+    <span class="registry-ticker"><span class="ticker-dot" aria-hidden="true"></span> Catholic Digital Commission</span>
   </a>
   <nav class="chapters" id="chapnav">
     <a href="#ecosystem">Ecosystem</a>
@@ -210,27 +232,55 @@
     <a href="#excellence">Excellence</a>
     <a href="#membership">Membership</a>
   </nav>
-  <a class="cta-btn" href="/register">Join now</a>
+  <div class="hdr-actions">
+    <div class="theme-switch" role="group" aria-label="Landing page theme">
+      <button type="button" data-theme-set="dark" class="is-active" aria-pressed="true">Heritage</button>
+      <button type="button" data-theme-set="corporate" aria-pressed="false">Corporate</button>
+    </div>
+    <a class="cta-btn primary" href="/register">Join now</a>
+  </div>
 </header>
 
 <!-- ============ 1. HERO ============ -->
 <section class="hero" id="top">
-  <img class="crest-lg reveal" src="/crest.png" alt="Vox Ecclesiae official crest" />
-  <p class="eyebrow reveal">Vox Ecclesiae · Catholic Digital Commission</p>
-  <h1 class="reveal d1">The Voice of the Church,<br/><em>reimagined</em> for the digital generation</h1>
-  <p class="sub reveal d2">A complete Catholic media, learning, membership, and community platform for faith formation, service, and excellence. Learn faith. Build community. Become the voice of the Church.</p>
-  <div class="ctas reveal d3">
-    <a class="cta-btn" href="/register">Join Vox Ecclesiae</a>
-    <a class="cta-btn royal" href="#courses">Explore courses</a>
-    <a class="cta-btn ghost" href="#madhatv">Watch Madha TV</a>
-    <a class="cta-btn ghost" href="#trainers">Become a trainer</a>
+  <div class="hero-stack">
+    <div class="hero-copy">
+      <img class="crest-lg heritage-only reveal" src="/crest.svg" alt="Vox Ecclesiae official crest" width="96" height="96" />
+      <img class="crest-lg corp-only reveal" src="/crest.svg" alt="Vox Ecclesiae official crest" width="72" height="72" />
+      <p class="eyebrow reveal">
+        <span class="heritage-only">Vox Ecclesiae · Catholic Digital Commission</span>
+        <span class="corp-only corp-section-label">Investors · Formation · Community</span>
+      </p>
+      <h1 class="reveal d1">
+        <span class="heritage-only heritage-headline">The Voice of the Church,<br/><em>reimagined</em> for the digital generation</span>
+        <span class="corp-only duo-headline" data-duo-lines="Building the Church's|Digital Formation|Backbone">Building the Church's Digital Formation Backbone</span>
+      </h1>
+      <p class="sub reveal d2">A complete Catholic media, learning, membership, and community platform for faith formation, service, and excellence. Learn faith. Build community. Become the voice of the Church.</p>
+      <div class="ctas reveal d3">
+        <a class="cta-btn primary" href="/register">Join Vox Ecclesiae<span class="btn-arrow" aria-hidden="true">↗</span></a>
+        <a class="cta-btn royal" href="#courses">Explore courses</a>
+        <a class="cta-btn ghost" href="#madhatv">Watch Madha TV</a>
+        <a class="cta-btn ghost" href="#trainers">Become a trainer</a>
+      </div>
+    </div>
+    <figure class="corp-hero-media corp-only reveal d2">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/San_Thome_Basilica%2C_Chennai.jpg/1920px-San_Thome_Basilica%2C_Chennai.jpg"
+        alt=""
+        loading="eager"
+        decoding="async"
+        referrerpolicy="no-referrer"
+      />
+      <figcaption class="corp-hero-caption">San Thome Basilica, Chennai — a landmark of Catholic mission and formation in South India</figcaption>
+    </figure>
   </div>
   <div class="counts reveal d3">
-    <div class="count"><div class="num" data-count="500">0</div><div class="lbl">Verified members</div></div>
-    <div class="count"><div class="num" data-count="24">0</div><div class="lbl">CISCAF courses</div></div>
-    <div class="count"><div class="num" data-count="12">0</div><div class="lbl">Live sessions</div></div>
-    <div class="count"><div class="num" data-count="2">0</div><div class="lbl">Languages · EN &amp; தமிழ்</div></div>
+    <div class="count"><div class="num" data-stat="members">0</div><div class="lbl">Verified members</div></div>
+    <div class="count"><div class="num" data-stat="courses">0</div><div class="lbl">CISCAF courses</div></div>
+    <div class="count"><div class="num" data-stat="sessions">0</div><div class="lbl">Live sessions</div></div>
+    <div class="count"><div class="num" data-stat="languages">2</div><div class="lbl">Languages · EN &amp; தமிழ்</div></div>
   </div>
+  <p class="reveal d3" data-stats-updated hidden style="margin-top:18px;font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-weight:700"></p>
   <div class="scroll-cue">Scroll to explore</div>
 </section>
 
@@ -249,35 +299,91 @@
 
 <!-- ============ 2. MISSION ============ -->
 <section class="chapter" id="mission">
-  <div class="chapter-head" style="text-align:center;max-width:900px">
-    <div class="chapter-meta reveal" style="justify-content:center"><span class="roman">Our Mission</span></div>
+  <div class="heritage-only">
+    <div class="chapter-head" style="text-align:center;max-width:900px">
+      <div class="chapter-meta reveal" style="justify-content:center"><span class="roman">Our Mission</span></div>
+    </div>
+    <div class="mission reveal d1">
+      <p class="big">Every scroll, every post, every screen is mission territory. Vox Ecclesiae forms <strong>disciples first, influencers second</strong>, uniting creators, clergy, and parishes to catalog, empower, and elevate Catholic voices in the digital world.</p>
+      <p class="verse">Faith · Formation · Communication · Digital Evangelization</p>
+    </div>
   </div>
-  <div class="mission reveal d1">
-    <p class="big">Every scroll, every post, every screen is mission territory. Vox Ecclesiae forms <strong>disciples first, influencers second</strong>, uniting creators, clergy, and parishes to catalog, empower, and elevate Catholic voices in the digital world.</p>
-    <p class="verse">Faith · Formation · Communication · Digital Evangelization</p>
+  <div class="corp-conviction corp-only reveal">
+    <p class="corp-section-label">Our Conviction</p>
+    <h2 class="duo-headline" data-duo-lines="Formation is the future.|The Church must lead the way.">Formation is the future. The Church must lead the way.</h2>
+    <p class="corp-investor-lede">Our mission is to set the benchmark for Catholic digital formation, verified membership, and responsible media ministry — and to help every parish and creator carry the Gospel into the digital generation with clarity and charity.</p>
   </div>
 </section>
 
 <!-- ============ 3. ECOSYSTEM ============ -->
-<section class="chapter" id="ecosystem" style="background:var(--navy-900)">
-  <div class="chapter-head">
-    <div class="chapter-meta reveal"><span class="roman">Chapter I</span><span class="rule"></span></div>
-    <h2 class="reveal">One connected <em>ecosystem</em></h2>
-    <p class="lede reveal d1">Not separate tools. One platform where identity, learning, media, community, and administration flow together.</p>
+<section class="chapter chapter-alt" id="ecosystem">
+  <div class="heritage-only">
+    <div class="chapter-head">
+      <div class="chapter-meta reveal"><span class="roman">Chapter I</span><span class="rule"></span></div>
+      <h2 class="reveal">One connected <em>ecosystem</em></h2>
+      <p class="lede reveal d1">Not separate tools. One platform where identity, learning, media, community, and administration flow together.</p>
+    </div>
+    <div class="eco">
+      <div class="glass tile reveal"><div class="ic">✚</div><h4>Membership</h4><p>Verified profiles for creators, clergy, and parish collaborators.</p></div>
+      <div class="glass tile reveal"><div class="ic">✦</div><h4>Vox ID</h4><p>A signed, verifiable digital credential for every member.</p></div>
+      <div class="glass tile reveal"><div class="ic">✎</div><h4>CISCAF Courses</h4><p>Faith and media formation, free and paid, with certificates.</p></div>
+      <div class="glass tile reveal"><div class="ic">✝</div><h4>Catechism</h4><p>Doctrine and Church teaching at the heart of every track.</p></div>
+      <div class="glass tile reveal"><div class="ic">◉</div><h4>AI Skills</h4><p>Responsible, mission-first use of AI for Catholic creators.</p><span class="soon">Hosted API required</span></div>
+      <div class="glass tile reveal"><div class="ic">↗</div><h4>Trending Skills</h4><p>Short-form video, podcasting, design, and writing craft.</p></div>
+      <div class="glass tile reveal"><div class="ic">☩</div><h4>Trainer Management</h4><p>Apply, get approved, teach, and mentor the next generation.</p></div>
+      <div class="glass tile reveal"><div class="ic">▶</div><h4>Madha TV</h4><p>Shows, talks, and youth participation in Catholic media.</p></div>
+      <div class="glass tile reveal"><div class="ic">⁘</div><h4>Vox Group</h4><p>Adore, Build, Connect, and Be His Disciple communities.</p></div>
+      <div class="glass tile reveal"><div class="ic">♕</div><h4>Vox Excellence</h4><p>Achievements and recognition published to the world.</p></div>
+      <div class="glass tile reveal"><div class="ic">✵</div><h4>Achievements</h4><p>Milestones tracked from first course to commissioning.</p></div>
+      <div class="glass tile reveal"><div class="ic">⚙</div><h4>Administration</h4><p>Approvals, audit logs, analytics, and command center.</p></div>
+    </div>
   </div>
-  <div class="eco">
-    <div class="glass tile reveal"><div class="ic">✚</div><h4>Membership</h4><p>Verified profiles for creators, clergy, and parish collaborators.</p></div>
-    <div class="glass tile reveal"><div class="ic">✦</div><h4>Vox ID</h4><p>A signed, verifiable digital credential for every member.</p></div>
-    <div class="glass tile reveal"><div class="ic">✎</div><h4>CISCAF Courses</h4><p>Faith and media formation, free and paid, with certificates.</p></div>
-    <div class="glass tile reveal"><div class="ic">✝</div><h4>Catechism</h4><p>Doctrine and Church teaching at the heart of every track.</p></div>
-    <div class="glass tile reveal"><div class="ic">◉</div><h4>AI Skills</h4><p>Responsible, mission-first use of AI for Catholic creators.</p><span class="soon">Rolling out</span></div>
-    <div class="glass tile reveal"><div class="ic">↗</div><h4>Trending Skills</h4><p>Short-form video, podcasting, design, and writing craft.</p></div>
-    <div class="glass tile reveal"><div class="ic">☩</div><h4>Trainer Management</h4><p>Apply, get approved, teach, and mentor the next generation.</p><span class="soon">Rolling out</span></div>
-    <div class="glass tile reveal"><div class="ic">▶</div><h4>Madha TV</h4><p>Shows, talks, and youth participation in Catholic media.</p></div>
-    <div class="glass tile reveal"><div class="ic">⁘</div><h4>Vox Group</h4><p>Adore, Build, Connect, and Be His Disciple communities.</p><span class="soon">Rolling out</span></div>
-    <div class="glass tile reveal"><div class="ic">♕</div><h4>Vox Excellence</h4><p>Achievements and recognition published to the world.</p><span class="soon">Rolling out</span></div>
-    <div class="glass tile reveal"><div class="ic">✵</div><h4>Achievements</h4><p>Milestones tracked from first course to commissioning.</p><span class="soon">Rolling out</span></div>
-    <div class="glass tile reveal"><div class="ic">⚙</div><h4>Administration</h4><p>Approvals, audit logs, analytics, and command center.</p></div>
+
+  <div class="corp-investor corp-only reveal">
+    <p class="corp-section-label">Our Strategy</p>
+    <h2 class="duo-headline" data-duo-lines="Three Layers.|One Objective.">Three Layers. One Objective.</h2>
+    <p class="corp-investor-lede">A layered strategy designed to unite verified identity, structured formation, and living community — so every Catholic creator can grow in faith and serve the mission at scale.</p>
+
+    <div class="corp-tabs" role="tablist" aria-label="Platform strategy layers">
+      <button type="button" role="tab" class="is-active" data-tab="identity" aria-selected="true" id="tab-identity">Layer 1: Identity</button>
+      <button type="button" role="tab" data-tab="formation" aria-selected="false" id="tab-formation">Layer 2: Formation</button>
+      <button type="button" role="tab" data-tab="community" aria-selected="false" id="tab-community">Layer 3: Community</button>
+    </div>
+
+    <div class="corp-tabpanels">
+      <article class="corp-tabpanel" role="tabpanel" data-tab-panel="identity" aria-labelledby="tab-identity">
+        <h3>Verified membership at scale</h3>
+        <p>The foundation of Vox Ecclesiae is a trusted registry where clergy, creators, and parish collaborators carry a single verified identity across the whole ecosystem.</p>
+        <ul class="corp-bullet-grid">
+          <li><strong>Vox ID credentials</strong><span>Signed, verifiable digital identity for every approved member.</span></li>
+          <li><strong>Member registry</strong><span>Public and private profiles with human review before publication.</span></li>
+          <li><strong>Commission governance</strong><span>Approvals, audit logs, and analytics for diocesan oversight.</span></li>
+        </ul>
+        <a class="corp-text-cta" href="/register">Join the registry <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="corp-tabpanel" role="tabpanel" data-tab-panel="formation" hidden aria-labelledby="tab-formation">
+        <h3>Low-friction Catholic formation</h3>
+        <p>Structured CISCAF courses, trainer pathways, and catechetical depth — built for creators who need craft and doctrine in the same place.</p>
+        <ul class="corp-bullet-grid">
+          <li><strong>CISCAF course catalog</strong><span>Free and paid tracks with certificates linked to your Vox ID.</span></li>
+          <li><strong>Trainer management</strong><span>Clergy and lay experts apply, teach, and mentor the next cohort.</span></li>
+          <li><strong>Catechism-first design</strong><span>Doctrine and Church teaching at the center of every learning path.</span></li>
+        </ul>
+        <a class="corp-text-cta" href="/courses">Explore courses <span aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="corp-tabpanel" role="tabpanel" data-tab-panel="community" hidden aria-labelledby="tab-community">
+        <h3>Community, media, and recognition</h3>
+        <p>Belonging, broadcast, and celebration — the outward-facing layer where formation becomes mission in public.</p>
+        <ul class="corp-bullet-grid">
+          <li><strong>Vox Group pillars</strong><span>Adore, Build, Connect, and Be His Disciple communities.</span></li>
+          <li><strong>Madha TV</strong><span>Programs, participation, and youth-facing Catholic media.</span></li>
+          <li><strong>Vox Excellence</strong><span>Published achievements and milestones the whole network can honor.</span></li>
+        </ul>
+        <a class="corp-text-cta" href="/vox-group">Enter Vox Group <span aria-hidden="true">→</span></a>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -289,18 +395,18 @@
     <p class="lede reveal d1">Structured formation for Catholic social media influencers. Catechism, media craft, and leadership, taught by clergy and working communicators.</p>
   </div>
   <div class="grid">
-    <div class="glass card reveal"><div class="top"><span class="tag">Faith Formation</span><span class="tag free">Free</span></div><h4>Digital Discipleship 101</h4><p>The cornerstone course. What the Church teaches about media and how to build a presence that flows from a real interior life.</p><div class="meta"><span><b>6 weeks</b> · Beginner</span><span>EN · தமிழ்</span></div><a class="more" href="/register">Enroll →</a></div>
-    <div class="glass card reveal d1"><div class="top"><span class="tag">Catechism</span><span class="tag free">Free</span></div><h4>Catholic Apologetics for the Digital Era</h4><p>Defend and explain the faith online with clarity and charity, built for creators and writers.</p><div class="meta"><span><b>8 weeks</b> · Intermediate</span><span>EN · தமிழ்</span></div><a class="more" href="/register">Enroll →</a></div>
-    <div class="glass card reveal d2"><div class="top"><span class="tag">Media Ministry</span><span class="tag paid">Paid</span></div><h4>Short-Form Video Evangelization</h4><p>Reels and Shorts that catechize without losing depth. Scripting, filming, editing, publishing.</p><div class="meta"><span><b>4 weeks</b> · All levels</span><span>EN</span></div><a class="more" href="/register">Enroll →</a></div>
-    <div class="glass card reveal"><div class="top"><span class="tag">Communication</span><span class="tag paid">Paid</span></div><h4>Podcasting as Ministry</h4><p>Concept, gear, recording, and the pastoral art of long-form Catholic conversation.</p><div class="meta"><span><b>6 weeks</b> · Intermediate</span><span>EN</span></div><a class="more" href="/register">Enroll →</a></div>
-    <div class="glass card reveal d1"><div class="top"><span class="tag">Youth Leadership</span><span class="tag free">Free</span></div><h4>Mission-First Growth Strategy</h4><p>Define your charism and audience, and build a content plan where every metric maps back to ministry.</p><div class="meta"><span><b>5 weeks</b> · Intermediate</span><span>EN · தமிழ்</span></div><a class="more" href="/register">Enroll →</a></div>
-    <div class="glass card reveal d2"><div class="top"><span class="tag">Media Ministry</span><span class="tag paid">Paid</span></div><h4>Sacred Design &amp; Visual Identity</h4><p>Typography, color, and iconography for feeds that feel reverent, consistent, and unmistakably yours.</p><div class="meta"><span><b>4 weeks</b> · All levels</span><span>EN</span></div><a class="more" href="/register">Enroll →</a></div>
+    <div class="glass card reveal"><div class="top"><span class="tag">Faith Formation</span><span class="tag free">Free</span></div><h4>Digital Discipleship 101</h4><p>The cornerstone course. What the Church teaches about media and how to build a presence that flows from a real interior life.</p><div class="meta"><span><b>6 weeks</b> · Beginner</span><span>EN · தமிழ்</span></div><a class="more" href="/courses">Enroll →</a></div>
+    <div class="glass card reveal d1"><div class="top"><span class="tag">Catechism</span><span class="tag free">Free</span></div><h4>Catholic Apologetics for the Digital Era</h4><p>Defend and explain the faith online with clarity and charity, built for creators and writers.</p><div class="meta"><span><b>8 weeks</b> · Intermediate</span><span>EN · தமிழ்</span></div><a class="more" href="/courses">Enroll →</a></div>
+    <div class="glass card reveal d2"><div class="top"><span class="tag">Media Ministry</span><span class="tag paid">Paid</span></div><h4>Short-Form Video Evangelization</h4><p>Reels and Shorts that catechize without losing depth. Scripting, filming, editing, publishing.</p><div class="meta"><span><b>4 weeks</b> · All levels</span><span>EN</span></div><a class="more" href="/courses">Enroll →</a></div>
+    <div class="glass card reveal"><div class="top"><span class="tag">Communication</span><span class="tag paid">Paid</span></div><h4>Podcasting as Ministry</h4><p>Concept, gear, recording, and the pastoral art of long-form Catholic conversation.</p><div class="meta"><span><b>6 weeks</b> · Intermediate</span><span>EN</span></div><a class="more" href="/courses">Enroll →</a></div>
+    <div class="glass card reveal d1"><div class="top"><span class="tag">Youth Leadership</span><span class="tag free">Free</span></div><h4>Mission-First Growth Strategy</h4><p>Define your charism and audience, and build a content plan where every metric maps back to ministry.</p><div class="meta"><span><b>5 weeks</b> · Intermediate</span><span>EN · தமிழ்</span></div><a class="more" href="/courses">Enroll →</a></div>
+    <div class="glass card reveal d2"><div class="top"><span class="tag">Media Ministry</span><span class="tag paid">Paid</span></div><h4>Sacred Design &amp; Visual Identity</h4><p>Typography, color, and iconography for feeds that feel reverent, consistent, and unmistakably yours.</p><div class="meta"><span><b>4 weeks</b> · All levels</span><span>EN</span></div><a class="more" href="/courses">Enroll →</a></div>
   </div>
-  <div style="text-align:center;margin-top:38px" class="reveal"><a class="cta-btn royal" href="/register">Browse all courses at enrollment</a></div>
+  <div style="text-align:center;margin-top:38px" class="reveal"><a class="cta-btn royal" href="/courses">Browse all courses in the portal</a></div>
 </section>
 
 <!-- ============ 5. VOX GROUP ============ -->
-<section class="chapter" id="voxgroup" style="background:var(--navy-900)">
+<section class="chapter chapter-alt" id="voxgroup">
   <div class="chapter-head">
     <div class="chapter-meta reveal"><span class="roman">Chapter III</span><span class="rule"></span></div>
     <h2 class="reveal">Vox <em>Group</em></h2>
@@ -327,7 +433,7 @@
       <h3>Watch, participate, and appear</h3>
       <p>Stream featured programs and live worship inside the member portal, register to participate in shows and youth programs, and submit your own tribute shorts for feast-day features.</p>
       <div class="actions">
-        <a class="cta-btn" href="/app">Watch inside the portal</a>
+        <a class="cta-btn primary" href="/app">Watch inside the portal<span class="btn-arrow" aria-hidden="true">↗</span></a>
         <a class="cta-btn ghost" href="/register">Register to participate</a>
       </div>
     </div>
@@ -344,7 +450,7 @@
 </section>
 
 <!-- ============ 7. VOX EXCELLENCE ============ -->
-<section class="chapter" id="excellence" style="background:var(--navy-900)">
+<section class="chapter chapter-alt" id="excellence">
   <div class="chapter-head">
     <div class="chapter-meta reveal"><span class="roman">Chapter V</span><span class="rule"></span></div>
     <h2 class="reveal">Vox <em>Excellence</em></h2>
@@ -365,7 +471,7 @@
       <h3>Teach what you have mastered</h3>
       <p>Priests, religious, and lay experts: bring your craft to the next generation of Catholic communicators. Apply with your skills and sample work; the commission reviews every application, and approved trainers receive courses, students, and a teaching profile.</p>
       <div class="actions">
-        <a class="cta-btn" href="/register">Apply as a trainer</a>
+        <a class="cta-btn primary" href="/register">Apply as a trainer<span class="btn-arrow" aria-hidden="true">↗</span></a>
         <a class="cta-btn ghost" href="/directory">Meet the community</a>
       </div>
     </div>
@@ -382,7 +488,7 @@
 </section>
 
 <!-- ============ 9. MEMBERSHIP ============ -->
-<section class="chapter" id="membership" style="background:var(--navy-900)">
+<section class="chapter chapter-alt" id="membership">
   <div class="chapter-head">
     <div class="chapter-meta reveal"><span class="roman">Chapter VI</span><span class="rule"></span></div>
     <h2 class="reveal">Membership &amp; <em>Vox ID</em></h2>
@@ -398,9 +504,9 @@
 <!-- ============ 10. TRUST / STATS ============ -->
 <div class="band">
   <div class="band-inner">
-    <div class="reveal"><div class="num"><i data-count="500">0</i></div><div class="lbl">Members in the registry</div></div>
-    <div class="reveal d1"><div class="num"><i data-count="24">0</i></div><div class="lbl">Courses &amp; tracks</div></div>
-    <div class="reveal d2"><div class="num"><i data-count="12">0</i></div><div class="lbl">Live sessions per cohort</div></div>
+    <div class="reveal"><div class="num"><i data-stat="members">0</i></div><div class="lbl">Members in the registry</div></div>
+    <div class="reveal d1"><div class="num"><i data-stat="courses">0</i></div><div class="lbl">Courses &amp; tracks</div></div>
+    <div class="reveal d2"><div class="num"><i data-stat="sessions">0</i></div><div class="lbl">Live sessions per cohort</div></div>
     <div class="reveal d3"><div class="num"><i data-count="1">0</i></div><div class="lbl">Mission</div></div>
   </div>
 </div>
@@ -410,7 +516,7 @@
   <p class="eyebrow reveal">Applications open</p>
   <h2 class="reveal d1">Be the voice.<br/><em>Build the mission.</em></h2>
   <p class="reveal d2">Join Vox Ecclesiae today. Create your verified identity, begin your formation, and take your place in the Church's digital mission.</p>
-  <a class="cta-btn reveal d3" href="/register" style="font-size:15px;padding:16px 38px">Join Vox Ecclesiae today</a>
+  <a class="cta-btn primary reveal d3" href="/register">Join Vox Ecclesiae today<span class="btn-arrow" aria-hidden="true">↗</span></a>
 </section>
 
 <!-- ============ 12. FOOTER ============ -->

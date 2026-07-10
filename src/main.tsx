@@ -12,6 +12,10 @@ import {ModeratorReviewsPage} from './features/admin/approvals/ModeratorReviewsP
 import './i18n';
 import './index.css';
 import './styles/design-system.css';
+import './styles/corporate-portal.css';
+import { initVoxTheme } from './theme/voxTheme';
+
+initVoxTheme();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

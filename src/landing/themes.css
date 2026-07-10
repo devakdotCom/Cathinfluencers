@@ -1,0 +1,931 @@
+/* =============================================================================
+   Corporate theme — modeled on abtc.com
+   Pure white ground, ink typography, geometric sans, rectangular CTAs,
+   uppercase navigation, generous whitespace, minimal ornament.
+   ============================================================================= */
+
+html[data-theme="corporate"] {
+  --navy-950: #ffffff;
+  --navy-900: #f9fafb;
+  --navy-850: #f3f4f6;
+  --navy-800: #e5e7eb;
+  --royal: #0b0e14;
+  --royal-2: #1f2937;
+  --gold: #b9862c;
+  --gold-2: #c9972f;
+  --gold-deep: #8f6418;
+  --ivory: #0b0e14;
+  --text: #0b0e14;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --glass: #ffffff;
+  --glass-2: #f9fafb;
+  --header-bg: rgba(255, 255, 255, 0.92);
+  --on-gold: #ffffff;
+  --surface-alt: #f9fafb;
+  --display: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --serif: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --radius-ui: 0;
+  --shadow-card: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-card-hover: 0 12px 40px rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="corporate"] ::selection {
+  background: #0b0e14;
+  color: #fff;
+}
+
+html[data-theme="corporate"] #progress {
+  height: 2px;
+  background: #0b0e14;
+}
+
+/* ---------- header (ABTC: logo + ticker left, nav right, flat white bar) ---------- */
+html[data-theme="corporate"] header {
+  height: 76px;
+  background: var(--header-bg);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  box-shadow: none;
+}
+
+html[data-theme="corporate"] .brand .name {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+html[data-theme="corporate"] .brand .edition {
+  display: none;
+}
+
+html[data-theme="corporate"] .registry-ticker {
+  display: inline-flex;
+}
+
+html[data-theme="corporate"] nav.chapters a {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 0;
+  padding: 8px 0;
+  margin: 0 14px;
+  color: var(--text);
+  background: transparent;
+}
+
+html[data-theme="corporate"] nav.chapters a:hover {
+  color: var(--muted);
+  background: transparent;
+}
+
+html[data-theme="corporate"] nav.chapters a.active {
+  color: var(--text);
+  background: transparent;
+  box-shadow: inset 0 -2px 0 0 var(--text);
+  border-radius: 0;
+}
+
+html[data-theme="corporate"] .hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+html[data-theme="corporate"] .theme-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  background: #fff;
+}
+
+html[data-theme="corporate"] .theme-switch button {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+html[data-theme="corporate"] .theme-switch button.is-active {
+  background: #0b0e14;
+  color: #fff;
+}
+
+/* ---------- buttons (ABTC: dark rectangle + arrow tile) ---------- */
+html[data-theme="corporate"] .cta-btn {
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0;
+  min-height: 48px;
+  padding-inline: 22px;
+  gap: 14px;
+  box-shadow: none;
+  transform: none;
+}
+
+html[data-theme="corporate"] .cta-btn:hover {
+  transform: none;
+  box-shadow: none;
+  filter: brightness(1.08);
+}
+
+html[data-theme="corporate"] .cta-btn.primary,
+html[data-theme="corporate"] header .cta-btn,
+html[data-theme="corporate"] .hero .ctas .cta-btn:first-child {
+  background: #0b0e14;
+  color: #fff;
+}
+
+html[data-theme="corporate"] .cta-btn .btn-arrow {
+  display: inline-grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  background: #fff;
+  color: #0b0e14;
+  font-size: 14px;
+  line-height: 1;
+  margin-left: 4px;
+}
+
+html[data-theme="corporate"] .cta-btn.royal {
+  background: #fff;
+  color: #0b0e14;
+  border: 1px solid #0b0e14;
+}
+
+html[data-theme="corporate"] .cta-btn.ghost {
+  background: transparent;
+  color: #0b0e14;
+  border: 1px solid var(--border);
+  box-shadow: none;
+}
+
+html[data-theme="corporate"] .hero .ctas .cta-btn.ghost,
+html[data-theme="corporate"] .hero .ctas .cta-btn.royal {
+  display: none;
+}
+
+html[data-theme="corporate"] .featured .actions .cta-btn.ghost {
+  display: inline-flex;
+}
+
+/* ---------- hero (ABTC: white, centered, massive sans headline) ---------- */
+html[data-theme="corporate"] .hero {
+  min-height: calc(100svh - 76px);
+  padding: clamp(100px, 12vw, 160px) 24px clamp(72px, 8vw, 120px);
+  background: #fff;
+  text-align: center;
+}
+
+html[data-theme="corporate"] .hero::before {
+  display: none;
+}
+
+html[data-theme="corporate"] .hero .crest-lg {
+  width: clamp(52px, 6vw, 72px);
+  margin-bottom: 32px;
+  filter: none;
+}
+
+html[data-theme="corporate"] .eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+html[data-theme="corporate"] .hero h1 {
+  font-family: var(--sans);
+  font-size: clamp(32px, 5.8vw, 72px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  max-width: 980px;
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] .hero h1 em {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: none;
+  color: #0b0e14;
+  -webkit-text-fill-color: initial;
+}
+
+html[data-theme="corporate"] .hero .sub {
+  font-size: clamp(15px, 1.4vw, 18px);
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 720px;
+  margin-top: 32px;
+}
+
+html[data-theme="corporate"] .hero .ctas {
+  margin-top: 48px;
+  justify-content: center;
+}
+
+html[data-theme="corporate"] .hero .counts {
+  margin-top: 72px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+  width: min(100%, 920px);
+}
+
+html[data-theme="corporate"] .count .num {
+  font-family: var(--sans);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] .scroll-cue {
+  display: none;
+}
+
+/* ---------- theme visibility (corp / heritage blocks) ---------- */
+html[data-theme="corporate"] .heritage-only {
+  display: none !important;
+}
+
+html[data-theme="corporate"] .corp-only {
+  display: block;
+}
+
+html[data-theme="corporate"] span.corp-only,
+html[data-theme="corporate"] .eyebrow .corp-only {
+  display: inline;
+}
+
+html[data-theme="corporate"] figure.corp-only {
+  display: block;
+}
+
+/* ---------- ABTC hero: copy stack + full-bleed media panel ---------- */
+html[data-theme="corporate"] .hero {
+  padding: clamp(88px, 10vw, 128px) 0 clamp(64px, 7vw, 96px);
+  align-items: stretch;
+}
+
+html[data-theme="corporate"] .hero-stack {
+  width: 100%;
+  align-items: stretch;
+}
+
+html[data-theme="corporate"] .hero-copy {
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-inline: clamp(20px, 5vw, 48px);
+  align-items: center;
+  text-align: center;
+}
+
+html[data-theme="corporate"] .corp-hero-media {
+  width: 100vw;
+  max-width: none;
+  margin: clamp(48px, 6vw, 80px) calc(50% - 50vw) 0;
+  position: relative;
+  min-height: clamp(220px, 32vw, 420px);
+  aspect-ratio: 21 / 9;
+  max-height: min(52vh, 520px);
+  overflow: hidden;
+  background: #e5e7eb;
+}
+
+html[data-theme="corporate"] .corp-hero-caption {
+  position: absolute;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  width: min(92%, 720px);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+  text-align: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+html[data-theme="corporate"] .hero .crest-lg.corp-only {
+  width: clamp(52px, 6vw, 72px);
+  height: auto;
+  margin-bottom: 28px;
+  filter: none;
+}
+
+html[data-theme="corporate"] .corp-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, #fff 0%, transparent 22%, transparent 78%, #fff 100%),
+    linear-gradient(90deg, #fff 0%, transparent 6%, transparent 94%, #fff 100%);
+}
+
+html[data-theme="corporate"] .corp-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  display: block;
+}
+
+html[data-theme="corporate"] .hero .counts {
+  width: min(100%, 920px);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+/* ---------- ABTC dual-letter headlines ---------- */
+html[data-theme="corporate"] .duo-headline {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1.02;
+}
+
+html[data-theme="corporate"] .hero .duo-headline {
+  font-size: clamp(32px, 5.8vw, 72px);
+  max-width: 980px;
+}
+
+html[data-theme="corporate"] .corp-conviction .duo-headline,
+html[data-theme="corporate"] .corp-investor > .duo-headline {
+  display: block;
+  font-size: clamp(28px, 4.2vw, 56px);
+  margin: 12px 0 0;
+}
+
+html[data-theme="corporate"] .duo-line {
+  display: block;
+}
+
+html[data-theme="corporate"] .duo-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+html[data-theme="corporate"] .duo-char {
+  position: relative;
+  display: inline-block;
+}
+
+html[data-theme="corporate"] .duo-primary {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-theme="corporate"] .duo-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 0;
+  color: rgba(11, 14, 20, 0.14);
+  transform: translate(0.075em, 0.075em);
+  pointer-events: none;
+  user-select: none;
+}
+
+html[data-theme="corporate"] .duo-ready .duo-char {
+  animation: duo-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--duo-i, 0) * 0.028s);
+}
+
+html[data-theme="corporate"] .duo-ready:hover .duo-ghost {
+  animation: duo-shift 0.45s ease both;
+  animation-delay: calc(var(--duo-i, 0) * 0.02s);
+}
+
+@keyframes duo-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes duo-shift {
+  from {
+    transform: translate(0.075em, 0.075em);
+  }
+  to {
+    transform: translate(0.14em, 0.1em);
+    color: rgba(11, 14, 20, 0.22);
+  }
+}
+
+/* ---------- ABTC conviction + investor strategy ---------- */
+html[data-theme="corporate"] .corp-section-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+html[data-theme="corporate"] .corp-conviction {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+html[data-theme="corporate"] .corp-conviction .corp-investor-lede {
+  margin: 28px auto 0;
+}
+
+html[data-theme="corporate"] .corp-investor {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+html[data-theme="corporate"] .corp-investor-lede {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 720px;
+  margin-top: 20px;
+}
+
+html[data-theme="corporate"] .corp-tabs {
+  display: flex;
+  gap: 0;
+  margin-top: clamp(36px, 5vw, 52px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+html[data-theme="corporate"] .corp-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+html[data-theme="corporate"] .corp-tabs [role="tab"] {
+  flex: none;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 16px clamp(16px, 2.5vw, 28px);
+  border: 0;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+html[data-theme="corporate"] .corp-tabs [role="tab"]:hover {
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] .corp-tabs [role="tab"].is-active {
+  color: #0b0e14;
+  border-bottom-color: #0b0e14;
+}
+
+html[data-theme="corporate"] .corp-tabpanel {
+  padding: clamp(36px, 5vw, 56px) 0 8px;
+}
+
+html[data-theme="corporate"] .corp-tabpanel[hidden] {
+  display: none;
+}
+
+html[data-theme="corporate"] .corp-tabpanel h3 {
+  font-family: var(--sans);
+  font-size: clamp(20px, 2.6vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  line-height: 1.15;
+  color: #0b0e14;
+  margin-bottom: 14px;
+}
+
+html[data-theme="corporate"] .corp-tabpanel > p {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 680px;
+}
+
+html[data-theme="corporate"] .corp-bullet-grid {
+  list-style: none;
+  margin: clamp(28px, 4vw, 40px) 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3vw, 32px);
+}
+
+html[data-theme="corporate"] .corp-bullet-grid li {
+  border-left: 2px solid #0b0e14;
+  padding-left: 16px;
+}
+
+html[data-theme="corporate"] .corp-bullet-grid strong {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #0b0e14;
+  margin-bottom: 8px;
+}
+
+html[data-theme="corporate"] .corp-bullet-grid span {
+  display: block;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+html[data-theme="corporate"] .corp-text-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #0b0e14;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: gap 0.2s;
+}
+
+html[data-theme="corporate"] .corp-text-cta:hover {
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  html[data-theme="corporate"] .corp-bullet-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-theme="corporate"] .corp-hero-media {
+    aspect-ratio: 16 / 10;
+    max-height: 44vh;
+  }
+}
+
+/* ---------- marquee ---------- */
+html[data-theme="corporate"] .marquee {
+  background: #f9fafb;
+  border-color: var(--border);
+}
+
+html[data-theme="corporate"] .marquee span {
+  font-family: var(--sans);
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+html[data-theme="corporate"] .marquee .dot {
+  color: #0b0e14;
+}
+
+/* ---------- sections (ABTC section rhythm) ---------- */
+html[data-theme="corporate"] section.chapter {
+  padding: clamp(72px, 9vw, 128px) clamp(20px, 5vw, 72px);
+}
+
+html[data-theme="corporate"] .chapter-alt {
+  background: var(--surface-alt) !important;
+}
+
+html[data-theme="corporate"] .roman {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+}
+
+html[data-theme="corporate"] .chapter h2 {
+  font-family: var(--sans);
+  font-size: clamp(28px, 4.2vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+html[data-theme="corporate"] .chapter h2 em {
+  font-family: var(--sans);
+  font-style: normal;
+  font-weight: 800;
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] .chapter .lede {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--muted);
+  max-width: 720px;
+}
+
+html[data-theme="corporate"] .mission p.big {
+  font-family: var(--sans);
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.55;
+  color: #0b0e14;
+  font-weight: 500;
+}
+
+html[data-theme="corporate"] .mission p.big strong {
+  color: #0b0e14;
+  font-weight: 800;
+}
+
+html[data-theme="corporate"] .mission .verse {
+  font-family: var(--sans);
+  color: var(--muted);
+}
+
+/* ---------- cards & tiles ---------- */
+html[data-theme="corporate"] .glass {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  backdrop-filter: none;
+  box-shadow: var(--shadow-card);
+}
+
+html[data-theme="corporate"] .eco .tile:hover,
+html[data-theme="corporate"] .card:hover,
+html[data-theme="corporate"] .pillar:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: #d1d5db;
+  background: #fff;
+}
+
+html[data-theme="corporate"] .eco .ic {
+  border-radius: 0;
+  background: #f9fafb;
+  color: #0b0e14;
+  border-color: var(--border);
+}
+
+html[data-theme="corporate"] .eco h4,
+html[data-theme="corporate"] .card h4,
+html[data-theme="corporate"] .pillar h4,
+html[data-theme="corporate"] .featured h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] .tag {
+  border-radius: 0;
+  background: #f3f4f6;
+  color: #374151;
+}
+
+html[data-theme="corporate"] .tag.free {
+  background: #ecfdf5;
+  color: #047857;
+}
+
+html[data-theme="corporate"] .tag.paid,
+html[data-theme="corporate"] .tag.royal {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+html[data-theme="corporate"] .card .more {
+  color: #0b0e14;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+
+html[data-theme="corporate"] .card .no {
+  font-family: var(--sans);
+  font-style: normal;
+  color: var(--muted);
+}
+
+/* ---------- featured panels ---------- */
+html[data-theme="corporate"] .featured {
+  border-radius: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-card);
+}
+
+html[data-theme="corporate"] .featured .art {
+  background: linear-gradient(180deg, #f9fafb 0%, #fff 100%);
+}
+
+html[data-theme="corporate"] .featured .art svg {
+  stroke: #0b0e14;
+}
+
+html[data-theme="corporate"] .featured .art svg path[fill] {
+  fill: #0b0e14;
+}
+
+html[data-theme="corporate"] .pill {
+  border-radius: 0;
+  color: var(--muted);
+  border-color: var(--border);
+  font-family: var(--sans);
+}
+
+/* ---------- stats band & finale ---------- */
+html[data-theme="corporate"] .band {
+  background: #0b0e14;
+  border: 0;
+}
+
+html[data-theme="corporate"] .band .num,
+html[data-theme="corporate"] .band .num i {
+  font-family: var(--sans);
+  font-style: normal;
+  color: #fff;
+}
+
+html[data-theme="corporate"] .band .lbl {
+  color: #9ca3af;
+}
+
+html[data-theme="corporate"] .finale {
+  background: #fff;
+  padding: clamp(96px, 12vw, 160px) 24px;
+}
+
+html[data-theme="corporate"] .finale::before {
+  display: none;
+}
+
+html[data-theme="corporate"] .finale h2 {
+  font-family: var(--sans);
+}
+
+html[data-theme="corporate"] .finale h2 em {
+  font-style: normal;
+  background: none;
+  color: #0b0e14;
+  -webkit-text-fill-color: initial;
+}
+
+html[data-theme="corporate"] .finale .cta-btn {
+  background: #0b0e14;
+  color: #fff;
+}
+
+/* ---------- footer ---------- */
+html[data-theme="corporate"] footer {
+  background: #fff;
+  border-top: 1px solid var(--border);
+}
+
+html[data-theme="corporate"] footer .fbrand {
+  font-family: var(--sans);
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] footer .ftag {
+  font-family: var(--sans);
+  font-style: normal;
+}
+
+html[data-theme="corporate"] .foot-col h4 {
+  font-family: var(--sans);
+  color: #0b0e14;
+  letter-spacing: 0.16em;
+}
+
+html[data-theme="corporate"] .foot-col a:hover {
+  color: #0b0e14;
+}
+
+/* ---------- shared theme switch (visible in both themes) ---------- */
+.registry-ticker {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid var(--border);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.registry-ticker .ticker-dot {
+  width: 8px;
+  height: 8px;
+  background: #b91c1c;
+  flex: none;
+}
+
+.hdr-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.theme-switch {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  background: var(--glass-2);
+}
+
+.theme-switch button {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.theme-switch button.is-active {
+  background: var(--gold);
+  color: var(--on-gold);
+}
+
+html[data-theme="dark"] .theme-switch button.is-active {
+  background: var(--gold);
+  color: var(--navy-950);
+}
+
+html[data-theme="corporate"] .theme-switch {
+  border-radius: 0;
+}
+
+@media (max-width: 1080px) {
+  html[data-theme="corporate"] nav.chapters {
+    display: none;
+  }
+
+  html[data-theme="corporate"] .registry-ticker {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  html[data-theme="corporate"] header .cta-btn span:not(.btn-arrow) {
+    font-size: 10px;
+  }
+}

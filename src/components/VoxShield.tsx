@@ -1,23 +1,12 @@
 import React from 'react';
+import { VoxEcclesiaeLogo } from './VoxEcclesiaeLogo';
 
 interface VoxShieldProps {
   className?: string;
   size?: number | string;
 }
 
-/**
- * The official Vox Ecclesiae crest (Commission for Social Communications,
- * Archdiocese of Madras - Mylapore). Served from /crest.png in public/.
- * Used everywhere the brand mark appears so the whole platform carries the
- * one official identity.
- */
+/** Official Vox Ecclesiae crest — inline SVG so logos work without a missing /crest.png asset. */
 export const VoxShield: React.FC<VoxShieldProps> = ({ className = '', size = '100%' }) => (
-  <img
-    src="/crest.png"
-    width={size}
-    height={size}
-    alt="Vox Ecclesiae official crest"
-    className={`select-none object-contain ${className}`}
-    draggable={false}
-  />
+  <VoxEcclesiaeLogo size={size} className={`object-contain ${className}`} />
 );

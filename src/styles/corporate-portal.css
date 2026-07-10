@@ -1,0 +1,196 @@
+/* =============================================================================
+   Corporate theme — portal / React app surfaces
+   Mirrors landing themes.css when html[data-theme="corporate"] is set.
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap');
+
+html[data-theme="corporate"] {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-amber-200: #e5e7eb;
+  --color-amber-300: #6b7280;
+  --color-amber-400: #0b0e14;
+  --color-amber-500: #0b0e14;
+  --color-amber-600: #0b0e14;
+  --color-yellow-500: #0b0e14;
+
+  --color-slate-950: #ffffff;
+  --color-slate-900: #f9fafb;
+  --color-slate-800: #f3f4f6;
+  --color-slate-700: #e5e7eb;
+
+  --color-sky-300: #374151;
+  --color-sky-500: #0b0e14;
+
+  --radius-xl: 0;
+  --radius-2xl: 0;
+  --radius-3xl: 0;
+}
+
+html[data-theme="corporate"] #vox-app-frame {
+  background: #ffffff;
+  color: #0b0e14;
+}
+
+html[data-theme="corporate"] #portal-landing-page,
+html[data-theme="corporate"] .vox-mobile-content {
+  background: #ffffff !important;
+  color: #0b0e14 !important;
+}
+
+html[data-theme="corporate"] #portal-landing-page > div:first-child {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="corporate"] #portal-landing-page h1,
+html[data-theme="corporate"] #portal-landing-page h2,
+html[data-theme="corporate"] #portal-landing-page h3 {
+  font-family: var(--font-sans);
+  color: #0b0e14 !important;
+}
+
+html[data-theme="corporate"] #portal-landing-page h1 em {
+  font-style: normal;
+  color: #0b0e14 !important;
+}
+
+html[data-theme="corporate"] #portal-landing-page .text-amber-400,
+html[data-theme="corporate"] #portal-landing-page .text-amber-300 {
+  color: #6b7280 !important;
+}
+
+html[data-theme="corporate"] #portal-landing-page .text-slate-400,
+html[data-theme="corporate"] #portal-landing-page .text-slate-500 {
+  color: #6b7280 !important;
+}
+
+html[data-theme="corporate"] #public-tabs-nav-bar {
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="corporate"] #public-tabs-nav-bar [role="tab"] {
+  border-radius: 0 !important;
+  color: #6b7280 !important;
+}
+
+html[data-theme="corporate"] #public-tabs-nav-bar [role="tab"][aria-selected="true"] {
+  color: #0b0e14 !important;
+  text-decoration-color: #0b0e14 !important;
+}
+
+html[data-theme="corporate"] .bg-slate-950,
+html[data-theme="corporate"] .bg-slate-900 {
+  background-color: #ffffff !important;
+}
+
+html[data-theme="corporate"] .bg-slate-800,
+html[data-theme="corporate"] .bg-slate-700 {
+  background-color: #f9fafb !important;
+}
+
+html[data-theme="corporate"] .border-slate-800,
+html[data-theme="corporate"] .border-slate-900,
+html[data-theme="corporate"] .border-slate-700 {
+  border-color: #e5e7eb !important;
+}
+
+html[data-theme="corporate"] .text-white {
+  color: #0b0e14 !important;
+}
+
+html[data-theme="corporate"] #universal-security-gateway {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.98)),
+    url('https://upload.wikimedia.org/wikipedia/commons/e/ee/San_Thome_Basilica%2C_Chennai.jpg') !important;
+  color: #0b0e14 !important;
+}
+
+html[data-theme="corporate"] #universal-security-gateway .text-amber-200,
+html[data-theme="corporate"] #universal-security-gateway .text-amber-400 {
+  color: #374151 !important;
+}
+
+html[data-theme="corporate"] #persistent-portal-linkbar {
+  background: #0b0e14 !important;
+  color: #ffffff !important;
+  border-color: #1f2937 !important;
+}
+
+html[data-theme="corporate"] #persistent-portal-linkbar .text-amber-300 {
+  color: #e5e7eb !important;
+}
+
+html[data-theme="corporate"] .rounded-xl,
+html[data-theme="corporate"] .rounded-2xl,
+html[data-theme="corporate"] .rounded-3xl,
+html[data-theme="corporate"] .rounded-lg {
+  border-radius: 0 !important;
+}
+
+html[data-theme="corporate"] .theme-switch {
+  display: inline-flex;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+html[data-theme="corporate"] .theme-switch button {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 9px 12px;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+html[data-theme="corporate"] .theme-switch button.is-active {
+  background: #0b0e14;
+  color: #fff;
+}
+
+html[data-theme="dark"] .theme-switch {
+  display: inline-flex;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 999px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .theme-switch button {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border: 0;
+  background: transparent;
+  color: #9aa6bd;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .theme-switch button.is-active {
+  background: #f5bd32;
+  color: #0b0d16;
+}
+
+html[data-theme="corporate"] #portal-theme-bar {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 20;
+}
+
+@media (min-width: 768px) {
+  html[data-theme="corporate"] #portal-theme-bar {
+    top: 16px;
+    right: 24px;
+  }
+}

@@ -1,0 +1,275 @@
+<svg 
+      viewBox="0 0 500 500" 
+      width=100% 
+      height=100% 
+      class="select-none"
+      xmlns="http://www.w3.org/2000/svg"
+      id="vox-ecclesiae-official-crest"
+    >
+      <defs>
+        
+        <path id="medallionTopTextPath" d="M 214 230 A 36 36 0 0 1 286 230" fill="none" />
+        
+        <path id="medallionBottomTextPath" d="M 214 230 A 36 36 0 0 0 286 230" fill="none" />
+        
+        
+        <clip-path id="shield-clip">
+          <path d="M 170 140 Q 250 155 330 140 L 330 260 Q 330 310 250 350 Q 170 310 170 260 Z" />
+        </clip-path>
+      </defs>
+
+      
+      <g stroke="#000" stroke-width="2" stroke-linejoin="round" fill="#E2BD6D" id="crest-background-weapons">
+        
+        <g transform="translate(100, 95) rotate(45)">
+          
+          <rect x="13" y="15" width="6" height="50" fill="#CBD5E1" stroke="#000" stroke-width="2" />
+          
+          <rect x="0" y="45" width="32" height="7" rx="2" fill="#E2BD6D" />
+          
+          <line x1="16" y1="20" x2="16" y2="45" stroke="#000" stroke-width="1.5" />
+          
+          <circle cx="16" cy="15" r="5.5" fill="#E2BD6D" />
+        </g>
+        
+        
+        <g transform="translate(365, 90) rotate(-45)">
+          
+          <polygon points="16,0 27,25 20,25 20,55 12,55 12,25 5,25" fill="#CBD5E1" stroke="#000" stroke-width="2" />
+          <line x1="16" y1="0" x2="16" y2="55" stroke="#000" stroke-width="1.5" />
+        </g>
+        
+        
+        <g transform="translate(315, 315) rotate(45)">
+          <polygon points="8,0 8,30 16,39 24,30 24,0" fill="#CBD5E1" stroke="#000" stroke-width="2" />
+          <line x1="16" y1="0" x2="16" y2="39" stroke="#000" stroke-width="1.5" />
+        </g>
+        
+        
+        <g transform="translate(160, 315) rotate(-45)">
+          <rect x="12" y="0" width="8" height="35" fill="#78350F" stroke="#000" stroke-width="2" />
+          <polygon points="8,35 16,46 24,35" fill="#E2BD6D" stroke="#000" stroke-width="2" />
+        </g>
+      </g>
+
+      
+      <g fill="#166534" stroke="#000" stroke-width="2" stroke-linejoin="round" id="crest-foliage">
+        
+        <path d="M 180 150 C 145 130, 115 150, 125 180 C 135 200, 160 190, 180 170 Z" />
+        <path d="M 160 190 C 120 185, 100 210, 110 240 C 120 260, 145 245, 160 220 Z" />
+        <path d="M 165 240 C 125 245, 105 275, 120 305 C 130 320, 155 300, 165 270 Z" />
+        
+        
+        <path d="M 140 165 Q 165 165 180 170" fill="none" stroke="#14532D" stroke-width="1.5" />
+        <path d="M 130 215 Q 150 215 160 220" fill="none" stroke="#14532D" stroke-width="1.5" />
+        <path d="M 135 270 Q 155 270 165 270" fill="none" stroke="#14532D" stroke-width="1.5" />
+
+        
+        <path d="M 320 150 C 355 130, 385 150, 375 180 C 365 200, 340 190, 320 170 Z" />
+        <path d="M 340 190 C 380 185, 400 210, 390 240 C 380 260, 355 245, 340 220 Z" />
+        <path d="M 335 240 C 375 245, 395 275, 380 305 C 370 320, 345 300, 335 270 Z" />
+        
+        
+        <path d="M 360 165 Q 335 165 320 170" fill="none" stroke="#14532D" stroke-width="1.5" />
+        <path d="M 370 215 Q 350 215 340 220" fill="none" stroke="#14532D" stroke-width="1.5" />
+        <path d="M 365 270 Q 345 270 335 270" fill="none" stroke="#14532D" stroke-width="1.5" />
+      </g>
+
+      
+      <g id="crest-shield-group">
+        
+        <g clip-path="url(#shield-clip)">
+          
+          <path d="M 170 140 Q 250 155 330 140 L 330 260 Q 330 310 250 350 Q 170 310 170 260 Z" fill="#B91C1C" />
+          
+          
+          <rect x="232" y="100" width="36" height="300" fill="#E2BD6D" stroke="#000" stroke-width="1" />
+          <rect x="150" y="212" width="200" height="36" fill="#E2BD6D" stroke="#000" stroke-width="1" />
+        </g>
+        
+        
+        <path 
+          d="M 170 140 Q 250 155 330 140 L 330 260 Q 330 310 250 350 Q 170 310 170 260 Z" 
+          fill="none" 
+          stroke="#000000" 
+          stroke-width="6" 
+          stroke-linejoin="round" 
+        />
+      </g>
+
+      
+      <g id="crest-quadrant-symbols">
+        
+        <g transform="translate(186, 160) scale(0.68)" stroke="#000" stroke-width="2" stroke-linejoin="round" fill="#E2BD6D">
+          <path d="M 1 5 Q 9 2 16 5 L 16 21 Q 9 18 1 21 Z" />
+          <path d="M 16 5 Q 23 2 31 5 L 31 21 Q 23 18 16 21 Z" />
+          
+          <line x1="4" y1="9" x2="12" y2="9" stroke="#000" stroke-width="1.2" />
+          <line x1="4" y1="13" x2="12" y2="13" stroke="#000" stroke-width="1.2" />
+          <line x1="4" y1="17" x2="12" y2="17" stroke="#000" stroke-width="1.2" />
+          <line x1="20" y1="9" x2="28" y2="9" stroke="#000" stroke-width="1.2" />
+          <line x1="20" y1="13" x2="28" y2="13" stroke="#000" stroke-width="1.2" />
+          <line x1="20" y1="17" x2="28" y2="17" stroke="#000" stroke-width="1.2" />
+        </g>
+
+        
+        <g transform="translate(288, 158) scale(0.7)" fill="#E2BD6D" stroke="#000" stroke-width="2" stroke-linejoin="round">
+          
+          <rect x="2" y="9" width="16" height="11" rx="2" />
+          
+          <circle cx="6" cy="4" r="4.2" />
+          <circle cx="14" cy="4" r="4.2" />
+          <circle cx="6" cy="4" r="1.5" fill="#000" stroke="none" />
+          <circle cx="14" cy="4" r="1.5" fill="#000" stroke="none" />
+          
+          <polygon points="18,11 25,6 25,23 18,18" />
+          
+          <line x1="10" y1="20" x2="4" y2="29" stroke="#000" stroke-width="2" />
+          <line x1="10" y1="20" x2="16" y2="29" stroke="#000" stroke-width="2" />
+          <line x1="10" y1="20" x2="10" y2="29" stroke="#000" stroke-width="1.5" />
+        </g>
+
+        
+        <g transform="translate(186, 272) scale(0.72)" fill="#E2BD6D" stroke="#000" stroke-width="2" stroke-linejoin="round">
+          <ellipse cx="12" cy="5" rx="10" ry="3.2" />
+          <path d="M 2 5 L 2 17 C 2 20, 22 20, 22 17 L 22 5" />
+          <ellipse cx="12" cy="17" rx="10" ry="3.2" fill="none" />
+          
+          <polyline points="2,5 7,17 12,5 17,17 22,5" fill="none" stroke-width="1.2" />
+          
+          <line x1="0" y1="-1" x2="13" y2="9" stroke="#000" stroke-width="2" stroke-linecap="round" />
+          <line x1="24" y1="-1" x2="11" y2="9" stroke="#000" stroke-width="2" stroke-linecap="round" />
+        </g>
+
+        
+        <g transform="translate(290, 271) scale(0.72)" fill="#E2BD6D" stroke="#000" stroke-width="2" stroke-linejoin="round">
+          
+          <rect x="7" y="2" width="10" height="13" rx="5" />
+          
+          <line x1="7" y1="8" x2="17" y2="8" stroke="#000" stroke-width="1" />
+          <line x1="12" y1="2" x2="12" y2="15" stroke="#000" stroke-width="1" />
+          
+          <path d="M 3 8 C 3 17, 21 17, 21 8" fill="none" stroke-width="2" />
+          
+          <line x1="12" y1="15" x2="12" y2="25" stroke="#000" stroke-width="2.5" />
+          
+          <ellipse cx="12" cy="25" rx="8" ry="2.2" />
+        </g>
+      </g>
+
+      
+      <g id="crest-central-medallion">
+        
+        <circle cx="250" cy="230" r="51" fill="#0A0515" stroke="#000" stroke-width="4" />
+        
+        <circle cx="250" cy="230" r="50" fill="none" stroke="#E2BD6D" stroke-width="1.5" />
+        
+        <circle cx="250" cy="230" r="39" fill="none" stroke="#E2BD6D" stroke-width="1.2" />
+        <circle cx="250" cy="230" r="37" fill="#0A0515" stroke="#000" stroke-width="1.5" />
+
+        
+        <path d="M 241 213 A 11 11 0 0 1 259 213" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M 237 207 A 16 16 0 0 1 263 207" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M 233 201 A 21 21 0 0 1 267 201" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" />
+
+        
+        <g id="crest-dove" fill="#FFFFFF" stroke="#000000" stroke-width="0.5" stroke-linejoin="round">
+          
+          <path d="M 247 228 C 236 224, 218 219, 222 238 C 231 237, 241 233, 247 228 Z" />
+          
+          <path d="M 253 228 C 264 224, 282 219, 278 238 C 269 237, 259 233, 253 228 Z" />
+          
+          <path d="M 246 235 L 241 247 Q 250 252 259 247 L 254 235 Z" />
+          
+          <circle cx="250" cy="225" r="4.2" />
+          
+          <path d="M 246 225 Q 250 233 250 237 Q 250 233 254 225 Z" />
+          
+          <polygon points="250,221 249,223 251,223" fill="#E2BD6D" stroke="none" />
+        </g>
+
+        
+        <g fill="#E2BD6D" font-family="system-ui, -apple-system, sans-serif" font-size="2.8" font-weight="bold">
+          <text text-anchor="middle" letter-spacing="0.05em">
+            <textPath href="#medallionTopTextPath" start-offset="50%">
+              COMMISSION FOR SOCIAL COMMUNICATIONS
+            </textPath>
+          </text>
+          <text text-anchor="middle" letter-spacing="0.05em">
+            <textPath href="#medallionBottomTextPath" start-offset="50%">
+              ARCHDIOCESE OF MADRAS - MYLAPORE
+            </textPath>
+          </text>
+        </g>
+      </g>
+
+      
+      <g transform="translate(195, 75)" fill="#E2BD6D" stroke="#000" stroke-width="2" stroke-linejoin="round" id="crest-crown">
+        
+        <rect x="15" y="32" width="80" height="9" rx="2.5" />
+        
+        <circle cx="25" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        <circle cx="35" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        <circle cx="45" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        <circle cx="55" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        <circle cx="65" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        <circle cx="75" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        <circle cx="85" cy="36.5" r="1.5" fill="#FFF" stroke="#000" stroke-width="0.5" />
+        
+        
+        
+        <polygon points="55,32 55,5" />
+        <circle cx="55" cy="5" r="5" fill="#FFF" />
+        
+        
+        <polygon points="35,32 35,14" />
+        <circle cx="35" cy="14" r="4" fill="#FFF" />
+        
+        
+        <polygon points="75,32 75,14" />
+        <circle cx="75" cy="14" r="4" fill="#FFF" />
+        
+        
+        <polygon points="18,32 18,19" />
+        <circle cx="18" cy="19" r="3" fill="#FFF" />
+        
+        
+        <polygon points="92,32 92,19" />
+        <circle cx="92" cy="19" r="3" fill="#FFF" />
+        
+        
+        <path d="M 15 32 Q 26 23 35 32 Q 46 16 55 32 Q 64 16 75 32 Q 84 23 95 32" fill="none" stroke-width="2" />
+      </g>
+
+      
+      <g stroke="#000" stroke-width="2" stroke-linejoin="round" id="crest-motto-scrolls">
+        
+        <path d="M 105 375 L 180 345 L 175 330 L 100 360 Z" fill="#7F1D1D" />
+        
+        <path d="M 90 380 Q 135 345 180 350 L 175 368 Q 130 363 90 398 Z" fill="#DC2626" />
+        
+        
+        <path d="M 395 375 L 320 345 L 325 330 L 400 360 Z" fill="#7F1D1D" />
+        
+        <path d="M 410 380 Q 365 345 320 350 L 325 368 Q 370 363 410 398 Z" fill="#DC2626" />
+        
+        
+        <path d="M 175 380 L 195 365 L 200 385 L 180 400 Z" fill="#7F1D1D" />
+        <path d="M 325 380 L 305 365 L 300 385 L 320 400 Z" fill="#7F1D1D" />
+        
+        
+        <path d="M 170 380 Q 250 410 330 380 L 325 362 Q 250 392 175 362 Z" fill="#DC2626" />
+        
+        
+        <g fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10.5" font-weight="900" text-anchor="middle" stroke="none">
+          
+          <text transform="translate(134, 375) rotate(-16)" letter-spacing="0.05em">VERITATEM</text>
+          
+          
+          <text transform="translate(366, 375) rotate(16)" font-size="9.5" letter-spacing="0.02em">IN CARITATE</text>
+          
+          
+          <text transform="translate(250, 386) rotate(3)" letter-spacing="0.05em">FACIENTES</text>
+        </g>
+      </g>
+    </svg>
