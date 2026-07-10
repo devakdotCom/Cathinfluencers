@@ -55,7 +55,6 @@ import {
   Menu,
   GraduationCap,
 } from 'lucide-react';
-import { ThemeToggle } from '../../components/ThemeToggle';
 import MemberCard from '../../components/MemberCard';
 import { formatBase64ToImageSource } from '../../utils/imageUtils';
 import { VoxShield } from '../../components/VoxShield';
@@ -210,9 +209,6 @@ export function WelcomePortalView() {
                 'radial-gradient(ellipse 55% 45% at 50% -8%, rgba(47,111,237,.18), transparent 70%), radial-gradient(ellipse 45% 35% at 50% 112%, rgba(245,189,50,.12), transparent 70%), #050712',
             }}
           >
-            <div id="portal-theme-bar">
-              <ThemeToggle />
-            </div>
             <div className="w-full min-w-0 max-w-4xl mx-auto space-y-5 z-10 relative">
               <div className="w-16 h-16 md:w-20 md:h-20 mx-auto filter drop-shadow-[0_10px_24px_rgba(245,189,50,0.35)]">
                 <VoxShield size="100%" />

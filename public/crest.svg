@@ -1,7 +1,7 @@
 <svg 
       viewBox="0 0 500 500" 
-      width=100% 
-      height=100% 
+      width="100%" 
+      height="100%" 
       class="select-none"
       xmlns="http://www.w3.org/2000/svg"
       id="vox-ecclesiae-official-crest"
@@ -191,12 +191,12 @@
         
         <g fill="#E2BD6D" font-family="system-ui, -apple-system, sans-serif" font-size="2.8" font-weight="bold">
           <text text-anchor="middle" letter-spacing="0.05em">
-            <textPath href="#medallionTopTextPath" start-offset="50%">
+            <textPath xlink:href="#medallionTopTextPath" start-offset="50%">
               COMMISSION FOR SOCIAL COMMUNICATIONS
             </textPath>
           </text>
           <text text-anchor="middle" letter-spacing="0.05em">
-            <textPath href="#medallionBottomTextPath" start-offset="50%">
+            <textPath xlink:href="#medallionBottomTextPath" start-offset="50%">
               ARCHDIOCESE OF MADRAS - MYLAPORE
             </textPath>
           </text>

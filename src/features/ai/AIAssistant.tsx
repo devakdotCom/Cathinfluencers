@@ -198,7 +198,7 @@ export function AIAssistant({
         type="button"
         variant="secondary"
         iconOnly
-        className="fixed bottom-[calc(6rem+env(safe-area-inset-bottom))] left-4 z-40 rounded-full bg-slate-950/90 shadow-2xl md:bottom-6 md:left-6"
+        className="vox-ai-assistant-trigger fixed bottom-[calc(6rem+env(safe-area-inset-bottom))] left-4 z-40 rounded-full bg-slate-950/90 shadow-2xl md:bottom-6 md:left-6"
         onClick={() => setOpen(true)}
         aria-label="Open Vox AI assistant"
       >

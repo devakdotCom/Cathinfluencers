@@ -1,4 +1,5 @@
 import './landing/themes.css';
+import './styles/theme-fab.css';
 import { initLandingTheme } from './landing/theme';
 import { renderDuoHeadlines } from './landing/duoHeadlines';
 import { initInvestorTabs } from './landing/investorTabs';

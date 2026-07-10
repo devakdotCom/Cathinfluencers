@@ -1,7 +1,6 @@
 import { ArrowLeft, LoaderCircle } from 'lucide-react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from './AuthProvider';
+import { goToMarketingHome } from '../../utils/marketingNavigation';
 
 interface AuthFlowNavigationProps {
   currentLabel: string;
@@ -12,23 +11,13 @@ export function AuthFlowNavigation({
   currentLabel,
   onBeforeNavigate,
 }: AuthFlowNavigationProps) {
-  const navigate = useNavigate();
-  const { user, role } = useAuth();
   const [isNavigating, setIsNavigating] = useState(false);
-
-  const destination = !user
-    ? '/'
-    : role === 'admin'
-      ? '/admin/dashboard'
-      : role === 'moderator'
-        ? '/admin/reviews'
-        : '/dashboard';
 
   const handleBack = () => {
     if (isNavigating) return;
     setIsNavigating(true);
     onBeforeNavigate?.();
-    navigate(destination);
+    goToMarketingHome();
   };
 
   return (
@@ -38,7 +27,7 @@ export function AuthFlowNavigation({
         className="auth-flow-back vox-focus"
         onClick={handleBack}
         disabled={isNavigating}
-        aria-label={`Back to ${user ? 'your portal dashboard' : 'Main Portal'}`}
+        aria-label="Back to Vox Ecclesiae landing page"
         aria-busy={isNavigating}
       >
         {isNavigating ? (

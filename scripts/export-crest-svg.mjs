@@ -6,7 +6,8 @@ if (!match) throw new Error('SVG not found in VoxEcclesiaeLogo.tsx');
 
 let svg = match[0]
   .replace(/\{\/\*[\s\S]*?\*\/\}/g, '')
-  .replace(/\{size\}/g, '100%')
+  .replace(/width=\{size\}/g, 'width="100%"')
+  .replace(/height=\{size\}/g, 'height="100%"')
   .replace(/className=\{`select-none \$\{className\}`\}/, 'class="select-none"');
 
 const attrs = [
@@ -25,6 +26,8 @@ const attrs = [
 for (const [from, to] of attrs) {
   svg = svg.replaceAll(from, to);
 }
+
+svg = svg.replace(/href="#/g, 'xlink:href="#');
 
 fs.mkdirSync('public', { recursive: true });
 fs.writeFileSync('public/crest.svg', svg);

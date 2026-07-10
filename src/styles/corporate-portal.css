@@ -130,67 +130,18 @@ html[data-theme="corporate"] .rounded-lg {
   border-radius: 0 !important;
 }
 
-html[data-theme="corporate"] .theme-switch {
-  display: inline-flex;
-  border: 1px solid #e5e7eb;
-  background: #fff;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-html[data-theme="corporate"] .theme-switch button {
-  font-family: var(--font-sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 9px 12px;
-  border: 0;
-  background: transparent;
-  color: #6b7280;
-  cursor: pointer;
-}
-
 html[data-theme="corporate"] .theme-switch button.is-active {
   background: #0b0e14;
   color: #fff;
 }
 
-html[data-theme="dark"] .theme-switch {
-  display: inline-flex;
-  border: 1px solid rgba(148, 163, 184, 0.25);
-  border-radius: 999px;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.06);
-}
-
-html[data-theme="dark"] .theme-switch button {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 8px 12px;
-  border: 0;
-  background: transparent;
-  color: #9aa6bd;
-  cursor: pointer;
-}
-
-html[data-theme="dark"] .theme-switch button.is-active {
-  background: #f5bd32;
-  color: #0b0d16;
-}
-
-html[data-theme="corporate"] #portal-theme-bar {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  z-index: 20;
+/* Stack AI assistant above theme FAB */
+.fixed.vox-ai-assistant-trigger {
+  bottom: calc(5.75rem + env(safe-area-inset-bottom)) !important;
 }
 
 @media (min-width: 768px) {
-  html[data-theme="corporate"] #portal-theme-bar {
-    top: 16px;
-    right: 24px;
+  .fixed.vox-ai-assistant-trigger {
+    bottom: 5.75rem !important;
   }
 }

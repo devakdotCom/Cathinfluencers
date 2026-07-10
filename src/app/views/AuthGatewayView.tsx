@@ -1,6 +1,5 @@
 import { ExternalLink } from 'lucide-react';
 import { VoxShield } from '../../components/VoxShield';
-import { ThemeToggle } from '../../components/ThemeToggle';
 import { AuthFlowNavigation } from '../../features/auth/AuthFlowNavigation';
 import { usePortal } from '../PortalContext';
 
@@ -35,9 +34,6 @@ export function AuthGatewayView() {
         currentLabel={authFlowLabel}
         onBeforeNavigate={resetAuthFlowForPortalReturn}
       />
-      <div className="absolute top-4 right-4 z-20">
-        <ThemeToggle />
-      </div>
       <div className="absolute inset-0 bg-radial-gradient from-amber-500/5 via-transparent to-[#05030d]/80 z-0 opacity-85 pointer-events-none" />
 
       <div className="flex flex-col gap-4 max-w-md w-full z-10 animate-fade-in animate-duration-300">
