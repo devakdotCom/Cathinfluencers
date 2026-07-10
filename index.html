@@ -66,8 +66,11 @@
   nav.chapters{display:flex;gap:2px}
   nav.chapters a{font-size:13px;font-weight:700;padding:8px 13px;border-radius:99px;letter-spacing:.02em;color:var(--muted);transition:background .25s,color .25s}
   nav.chapters a:hover{background:var(--glass-2);color:var(--text)}
-  nav.chapters a.active{background:var(--gold);color:var(--navy-950)}
-  .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--navy-950);font-size:13px;font-weight:700;letter-spacing:.05em;padding:12px 24px;border-radius:99px;transition:background .25s,transform .25s,box-shadow .25s}
+  nav.chapters a.active{background:var(--gold);color:var(--on-gold)}
+  /* Corporate (white) theme contrast fix for decorative gold line art inside panels */
+  html[data-theme="corporate"] .featured .art svg [stroke]{stroke:#a5731f}
+  html[data-theme="corporate"] .featured .art svg [fill="#f5bd32"]{fill:#a5731f}
+  .cta-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--gold);color:var(--on-gold);font-size:13px;font-weight:700;letter-spacing:.05em;padding:12px 24px;border-radius:99px;transition:background .25s,transform .25s,box-shadow .25s}
   .cta-btn:hover{background:var(--gold-2);transform:translateY(-1px);box-shadow:0 14px 45px rgba(245,158,11,.18)}
   .cta-btn.royal{background:var(--royal);color:#fff}
   .cta-btn.royal:hover{background:var(--royal-2);box-shadow:0 14px 45px rgba(47,111,237,.25)}
