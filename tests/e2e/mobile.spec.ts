@@ -1,4 +1,21 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
+
+/**
+ * The public tab bar is paginated: later tabs (Catholic Connect, Resources)
+ * live on a second page behind the "Show more navigation tabs" control.
+ * This helper reveals a tab if needed before returning its locator.
+ */
+async function openPublicTab(page: Page, name: RegExp) {
+  const tabBar = page.locator('#public-tabs-nav-bar');
+  await tabBar.waitFor({ timeout: 30_000 });
+  const tab = tabBar.getByRole('tab', { name });
+  if (!(await tab.isVisible().catch(() => false))) {
+    const more = page.getByRole('button', { name: /show more navigation tabs/i });
+    if (await more.isVisible().catch(() => false)) await more.click();
+  }
+  await tab.scrollIntoViewIfNeeded();
+  return tab;
+}
 
 test('mobile layout has no page overflow and exposes Resources navigation', async ({ page }) => {
   await page.goto('/app');
@@ -10,8 +27,7 @@ test('mobile layout has no page overflow and exposes Resources navigation', asyn
   expect(overflow.body).toBeLessThanOrEqual(1);
   expect(overflow.root).toBeLessThanOrEqual(1);
 
-  const resources = page.locator('#public-tabs-nav-bar').getByRole('tab', { name: /resources/i });
-  await resources.scrollIntoViewIfNeeded();
+  const resources = await openPublicTab(page, /resources/i);
   await expect(resources).toBeVisible();
   const box = await resources.boundingBox();
   expect(box?.height || 0).toBeGreaterThanOrEqual(44);
@@ -41,7 +57,7 @@ test('admin sign-in form remains inside a 320px viewport', async ({ page }) => {
   });
   await expect(authNavigation).toBeVisible();
   const backButton = authNavigation.getByRole('button', {
-    name: /back to main portal/i,
+    name: /back to vox ecclesiae/i,
   });
   await expect(backButton).toContainText('Back');
   const backButtonBox = await backButton.boundingBox();
@@ -59,7 +75,7 @@ test('authentication routes expose consistent breadcrumbs and portal escape path
   const registerNavigation = page.getByRole('navigation', {
     name: /authentication navigation/i,
   });
-  await expect(registerNavigation.getByText('Back to Main Portal')).toBeVisible();
+  await expect(registerNavigation.getByText('Back to Vox Ecclesiae')).toBeVisible();
   await expect(registerNavigation.getByText('Register')).toBeVisible();
 
   await page.goto('/reset-password');
@@ -71,7 +87,7 @@ test('authentication routes expose consistent breadcrumbs and portal escape path
   await expect(page.getByLabel(/registered email address/i)).toBeVisible();
   await expect(page.getByLabel(/^password/i)).toHaveCount(0);
 
-  await resetNavigation.getByRole('button', { name: /back to main portal/i }).click();
+  await resetNavigation.getByRole('button', { name: /back to vox ecclesiae/i }).click();
   await expect(page).toHaveURL('/');
 });
 
@@ -125,10 +141,8 @@ test('upgraded public directory exposes filters, cards, and parish map view', as
       .getByRole('button', { name: /directory/i })
       .click();
   } else {
-    await page
-      .locator('#public-tabs-nav-bar')
-      .getByRole('tab', { name: /our leaders/i })
-      .click();
+    const leadersTab = await openPublicTab(page, /our leaders/i);
+    await leadersTab.click();
   }
 
   await expect(
@@ -164,7 +178,7 @@ test('invalid opaque credential verification is clear and mobile-safe', async ({
   });
   await expect(authNavigation.getByText('Credential Lookup')).toBeVisible();
   await expect(
-    authNavigation.getByRole('button', { name: /back to main portal/i }),
+    authNavigation.getByRole('button', { name: /back to vox ecclesiae/i }),
   ).toBeVisible();
   await expect(
     page.getByRole('heading', { name: /credential not valid/i }),
@@ -177,7 +191,8 @@ test('invalid opaque credential verification is clear and mobile-safe', async ({
 
 test('Madha TV uses an allowed YouTube embed with accessible fallbacks', async ({ page }) => {
   await page.goto('/app');
-  await page.getByRole('tab', { name: /catholic connect/i }).click();
+  const connectTab = await openPublicTab(page, /catholic connect/i);
+  await connectTab.click();
   await page.getByRole('button', { name: /madha tv/i }).click();
 
   const player = page.locator('#madhatv-player');

@@ -179,7 +179,9 @@ export function AdminAccessDeniedView() {
     getNormalizedParish,
   } = usePortal();
 
-      {portalMode === 'admin' && !!firebaseUser && !isAdminAuthenticated && (
+  if (!(portalMode === 'admin' && !!firebaseUser && !isAdminAuthenticated)) return null;
+
+  return (
         <div 
           className="auth-flow-page min-h-[100svh] flex items-center justify-center p-6 text-white relative" 
           id="admin-security-gateway"
@@ -226,5 +228,5 @@ export function AdminAccessDeniedView() {
             </div>
           </div>
         </div>
-      )}
+  );
 }

@@ -199,7 +199,9 @@ export function MemberFormPortalView() {
     getNormalizedParish,
   } = usePortal();
 
-      {portalMode === 'member-form' && (
+  if (portalMode !== 'member-form') return null;
+
+  return (
         <div className="auth-flow-page min-h-screen bg-slate-900 relative p-4 md:p-8 flex justify-center items-center" id="member-application-portal">
           <AuthFlowNavigation currentLabel="Register" onBeforeNavigate={resetAuthFlowForPortalReturn} />
           <div className="w-full max-w-4xl bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden" id="form-embedded-wrapper">
@@ -246,5 +248,5 @@ export function MemberFormPortalView() {
             </div>
           </div>
         </div>
-      )}
+  );
 }

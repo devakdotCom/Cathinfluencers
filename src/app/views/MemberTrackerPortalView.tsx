@@ -179,7 +179,9 @@ export function MemberTrackerPortalView() {
     getNormalizedParish,
   } = usePortal();
 
-      {portalMode === 'member-tracker' && (
+  if (portalMode !== 'member-tracker') return null;
+
+  return (
         <div className="auth-flow-page min-h-[100svh] bg-slate-800 p-6 md:p-12 text-white flex flex-col items-center justify-center animate-fade-in" id="member-tracker-portal">
           <AuthFlowNavigation currentLabel="Credential Lookup" onBeforeNavigate={resetAuthFlowForPortalReturn} />
           <div className="w-full max-w-lg bg-slate-900 border border-slate-750 p-6 rounded-2xl shadow-xl space-y-6">
@@ -329,5 +331,5 @@ export function MemberTrackerPortalView() {
 
           </div>
         </div>
-      )}
+  );
 }

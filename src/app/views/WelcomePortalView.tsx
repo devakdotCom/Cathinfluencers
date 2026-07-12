@@ -199,7 +199,11 @@ export function WelcomePortalView() {
     getNormalizedParish,
   } = usePortal();
 
-      {portalMode === 'welcome' && (
+  // Regression guard: this component must RETURN its JSX. A refactor once left
+  // the block below as a bare statement, silently rendering nothing.
+  if (portalMode !== 'welcome') return null;
+
+  return (
         <div className="vox-mobile-content min-h-screen bg-slate-950 text-white font-sans flex flex-col relative select-text overflow-x-clip" id="portal-landing-page">
           {/* Main Hero Background Banner */}
           <div
@@ -799,5 +803,5 @@ export function WelcomePortalView() {
             onAccount={openAccountWorkspace}
           />
         </div>
-      )}
+  );
 }

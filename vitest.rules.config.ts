@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 export default defineConfig({
   test: {
     environment: 'node',
-    include: ['tests/firestore.rules.test.ts'],
+    include: ['tests/firestore.rules.test.ts', 'tests/firestore.modules.rules.test.ts'],
     fileParallelism: false,
   },
 });
