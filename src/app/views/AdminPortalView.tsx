@@ -203,7 +203,11 @@ export function AdminPortalView() {
     getNormalizedParish,
   } = usePortal();
 
-      {portalMode === 'admin' && isAdminAuthenticated && (
+  // Regression guard: this component must RETURN its JSX. A refactor once left
+  // the block below as a bare statement, silently rendering nothing.
+  if (!(portalMode === 'admin' && isAdminAuthenticated)) return null;
+
+  return (
         <div className="min-h-screen lg:h-screen lg:overflow-hidden bg-slate-50 text-slate-900 flex flex-col lg:flex-row font-sans" id="admin-workspace-layout animate-fade-in">
           
           {/* Mobile Overlay Background Dimmer */}
@@ -1554,5 +1558,5 @@ export function AdminPortalView() {
           </div>
 
         </div>
-      )}
+  );
 }
